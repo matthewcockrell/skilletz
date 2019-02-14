@@ -1,15 +1,20 @@
 {% extends 'pages/base.html' %}
 
+{% load static %}
+
 {% block pagename %}Home{% endblock %}
 
 {% block pagecontent %}
-<div>
-	<p>
-		This is where the actual HTML for the page goes. The line at the top of the file
-		says that this HTML should be injected into the base.html file for each "block".
-		This let's us put all of the code that belongs on every page (navbar, logo, etc)
-		in one place (base.html) and keep the details like the contents of the page in 
-		these files.
-	</p>
+<div> 
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Skilletz</h1>
+			<hr class="my-4">
+			<p class="lead">Connecting students to the people they need</p>
+		</div>
+	</div>
+	<div class="container">
+		<p>We want to connect people</p>
+	</div>
 </div>
 {% endblock %}
