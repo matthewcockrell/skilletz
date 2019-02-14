@@ -1,3 +1,8 @@
 body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
+
+.navbar-row {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
