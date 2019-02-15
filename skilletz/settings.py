@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'login',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +86,25 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '726313653646-ft92arc68f5ft36kqffvhd95m0fjsavd.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X-bYTHYKAgBnhOErQj8Fo4F3'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+SOCIAL_AUTH_LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '' # TODO: replace with url for the feed page
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '' # TODO: replace with url for the feed page
+
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('new_user')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
