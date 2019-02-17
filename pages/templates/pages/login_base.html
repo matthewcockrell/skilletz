@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+      <TITLE>
+         Skilletz: Login
+      </TITLE>
+      <H1> Welcome to Skilletz!</H1>
+      <H2> Connecting Students to the people they need. </H2>
+   </HEAD>
+<BODY>
+   <form>
+     {% csrf_token %}
+
+     UVA Email:
+     <input type = "text" name="email"><br>
+
+     Passsword:
+     <input type = "text" name="password"><br>
+
+     <input type = "submit" value = "Login"><br><br>
+
+     Not signed up yet?<br>
+     <input type = "submit" value = "Register Now!"><br>
+
+  </form>
+
+
+</BODY>
+</HTML>
