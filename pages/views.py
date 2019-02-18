@@ -9,3 +9,6 @@ class LoginPageView(TemplateView):
 
 class ProfilePageView(TemplateView):
     template_name = 'pages/profile.html'
+
+class FeedPageView(TemplateView):
+    template_name = 'pages/feed.html'
