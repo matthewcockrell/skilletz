@@ -102,12 +102,12 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X-bYTHYKAgBnhOErQj8Fo4F3'
 LOGIN_URL = '/auth/login/google-oauth2/'
 SOCIAL_AUTH_LOGIN_URL = '/auth/login/google-oauth2/'
 
-LOGIN_REDIRECT_URL = '' # TODO: replace with url for the feed page
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '' # TODO: replace with url for the feed page
+LOGIN_REDIRECT_URL = reverse_lazy('pages:feed')
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('pages:feed')
 
 LOGOUT_REDIRECT_URL = '/'
 
-SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('new_user')
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
