@@ -25,7 +25,10 @@ SECRET_KEY = '8(104_p-lf=pq$#hkw37^q2&u&wrm50vcw&i+ie!t+4pp+&^^&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'skilletz-app.herokuapp.com',
+    'localhost',
+]
 
 
 # Application definition
