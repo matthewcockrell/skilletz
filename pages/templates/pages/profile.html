@@ -1,0 +1,34 @@
+{% extends 'pages/base.html' %}
+
+{% load static %}
+
+{% block pagename %}Profile{% endblock %}
+
+{% block pagecontent %}
+
+<head>
+	<TITLE> Skilletz - Profile Page </TITLE>
+</head>
+
+<body>
+	<div>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Your Profile Page</h1>
+				<hr class="my-4">
+			</div>
+		</div>
+		<div>
+			<section>
+				<i>Profile Picture Here </i>
+				<p>Name: </p>
+				<p>Email: </p>
+				<p>Bio: </p>
+				<p>Upload Resume or Portfolio: </p>
+				<button type="submit" class="btn btn-success">Upload</button>
+			</section>
+		</div>
+	</div>
+</body>
+
+{% endblock %}
