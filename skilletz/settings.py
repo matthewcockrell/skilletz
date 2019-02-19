@@ -102,16 +102,14 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '726313653646-ft92arc68f5ft36kqffvhd95m0fjsavd.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X-bYTHYKAgBnhOErQj8Fo4F3'
 
-LOGIN_URL = '/auth/login/google-oauth2/'
-SOCIAL_AUTH_LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/oauth/login/google-oauth2/'
+SOCIAL_AUTH_LOGIN_URL = '/oauth/login/google-oauth2/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
-
-LOGOUT_REDIRECT_URL = '/'
-
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
 
+LOGOUT_REDIRECT_URL = '/'
 POST_LOGIN_HOME_URL = 'pages:feed'
 
 AUTH_PASSWORD_VALIDATORS = [
