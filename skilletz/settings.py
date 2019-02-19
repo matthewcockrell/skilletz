@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'login',
+    'social_django',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +93,27 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '726313653646-ft92arc68f5ft36kqffvhd95m0fjsavd.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X-bYTHYKAgBnhOErQj8Fo4F3'
+
+LOGIN_URL = '/auth/login/google-oauth2/'
+SOCIAL_AUTH_LOGIN_URL = '/auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
+
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
+
+POST_LOGIN_HOME_URL = 'pages:feed'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,5 +149,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-django_heroku.settings(locals())
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+django_heroku.settings(locals())
