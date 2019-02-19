@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'pages',
     'login',
     'social_django',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -102,12 +104,14 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'X-bYTHYKAgBnhOErQj8Fo4F3'
 LOGIN_URL = '/auth/login/google-oauth2/'
 SOCIAL_AUTH_LOGIN_URL = '/auth/login/google-oauth2/'
 
-LOGIN_REDIRECT_URL = reverse_lazy('pages:feed')
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('pages:feed')
+LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = reverse_lazy('login:new_user')
 
 LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
+
+POST_LOGIN_HOME_URL = 'pages:feed'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -143,3 +147,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

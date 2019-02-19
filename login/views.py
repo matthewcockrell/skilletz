@@ -3,17 +3,30 @@ from django.shortcuts import render
 from .forms import NewProfileForm
 from .models import Profile
 
-from settings import LOGIN_REDIRECT_URL
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.conf import settings
 
 def new_user(request):
     if request.method == 'POST':
-        # check for form validity, save, redirect
         form = NewProfileForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(reverse_lazy(LOGIN_REDIRECT_URL))
+            profile_to_save = form.save(commit=False) # don't commit yet so we can add the user
 
-    else request.method == 'POST':
+            request.user.profile.first_name = profile_to_save.first_name
+            request.user.profile.last_name = profile_to_save.last_name
+            request.user.profile.graduation_year = profile_to_save.graduation_year
+            request.user.profile.major = profile_to_save.major
+            request.user.profile.computing_id = profile_to_save.computing_id
+
+            request.user.profile.save()
+
+            return redirect(reverse(settings.POST_LOGIN_HOME_URL))
+
+    elif request.user.profile and request.user.profile.has_been_initialized():
+        return redirect(reverse(settings.POST_LOGIN_HOME_URL))
+
+    else:
         form = NewProfileForm()
 
     return render(request, 'login/new_user.html', {'form': form})

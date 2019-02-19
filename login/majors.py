@@ -1,4 +1,5 @@
 UVA_MAJOR_CHOICES = (
+    ('Undeclared', 'Undeclared'),
     ('Arts and Sciences', (
         ('African American & African Studies', 'African American & African Studies'),
         ('American Studies', 'American Studies'),
