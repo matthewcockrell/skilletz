@@ -1,4 +1,10 @@
-{% extends 'pages/base.html' %} {% load static %} {% block pagename %}Feed{% endblock %} {% block pagecontent %}
+{% extends 'pages/authenticated.html' %}
+
+{% load static %}
+
+{% block pagename %}Feed{% endblock %}
+
+{% block content %}
 <div>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">

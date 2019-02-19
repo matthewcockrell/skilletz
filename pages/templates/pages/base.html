@@ -10,20 +10,8 @@
 
 
 		<link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
-		<!--
-			Since we will probably want Bootstrap on all of our pages, that also
-			might go here, etc.
-		-->
 	</head>
 	<body>
-		<div class="container">
-			<ul class="nav justify-content-end">
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'social:begin' 'google-oauth2' %}">Login</a>
-				</li>
-			</ul>
-		</div>
-
 		{% block pagecontent %}{% endblock%}
 	</body>
 <html>

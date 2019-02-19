@@ -6,6 +6,7 @@ from .models import Profile
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.conf import settings
+from django.contrib.auth import logout
 
 def new_user(request):
     if request.method == 'POST':
@@ -30,3 +31,8 @@ def new_user(request):
         form = NewProfileForm()
 
     return render(request, 'login/new_user.html', {'form': form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('pages:home')
