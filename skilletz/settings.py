@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -149,3 +150,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_heroku.settings(locals())
