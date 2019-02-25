@@ -12,3 +12,6 @@ class ProfilePageView(TemplateView):
 
 class FeedPageView(TemplateView):
     template_name = 'pages/feed.html'
+
+class AvailabilityPageView(TemplateView):
+    template_name = 'pages/availability.html'

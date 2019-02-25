@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^$', views.HomePageView.as_view(), name='home'),
     url('login', views.LoginPageView.as_view(), name='login'),
     url('profile', login_required(views.ProfilePageView.as_view()), name='profile'),
-    url('feed', login_required(views.FeedPageView.as_view()), name='feed')
+    url('feed', login_required(views.FeedPageView.as_view()), name='feed'),
+    url('availability', views.AvailabilityPageView.as_view(), name='availability')
 ]

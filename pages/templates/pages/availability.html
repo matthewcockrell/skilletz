@@ -1,0 +1,32 @@
+{% extends 'pages/profile.html' %}
+
+{% load static %}
+
+{% block pagename %}Profile{% endblock %}
+
+{% block pagecontent %}
+
+<head>
+	<TITLE> Skilletz - Student Availability Page </TITLE>
+</head>
+
+<body>
+	<div>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Your Availability Page</h1>
+				<hr class="my-4">
+			</div>
+		</div>
+		<div>
+			<form>
+				<p>Name: </p>
+				<p>Subject: </p>
+				<p>Times: </p>
+				<button type="submit" class="btn btn-success">Upload</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+{% endblock %}
