@@ -1,0 +1,9 @@
+language: Python
+rvm:
+ - 3.7.2
+ - python
+ 
+ deploy:
+  provider: heroku
+  api_key:
+    secure: "YOUR ENCRYPTED API KEY"
