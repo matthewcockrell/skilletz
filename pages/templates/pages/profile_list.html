@@ -1,13 +1,23 @@
-{% extends 'pages/base.html'%} {% block pagecontent %}
-<form method="get">
-	{{filter.form.as_p}}
-	<button type="submit">Search</button>
-</form>
-<ul>
-	{% for profile in filter.qs %}
-	<li>
-		{{profile.user}}
-	</li>
-	{% endfor %}
-</ul>
+{% extends 'pages/authenticated.html' %} {% block content %}
+<div>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Feed</h1>
+			<hr class="my-4">
+		</div>
+	</div>
+	<div>
+		<form method="get">
+			{{filter.form.as_p}}
+			<button type="submit">Search</button>
+		</form>
+		<ul>
+			{% for profile in filter.qs %}
+			<li>
+				{{profile.user}} - {{profile.first_name}} {{profile.last_name}}
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
 {% endblock %}
