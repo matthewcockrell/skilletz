@@ -5,6 +5,9 @@
 {% block pagename %}Profile{% endblock %}
 
 {% block content %}
+
+{% load crispy_forms_tags %}
+
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -24,5 +27,43 @@
 		</section>
 	</div>
 </div>
+
+<br><br>
+<section>
+	 <H2 class="display-6"> Reviews and Comments: </H2>
+	 <div class = "jumbotron jumbotron-fluid">
+		 <div = "container">
+		 <b> Comment Title  - - -   <span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span> <br>	</b>First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆ </b><br>	First line of comment <br><br>
+		 <br><br>
+		 <H5 class="display-6"> New Review for this User: </H5>
+
+
+		 <form>
+		{{form|crispy}}
+
+			<!--Code for star rating from https://css-tricks.com/star-ratings/-->
+	 		<link rel="stylesheet" type="text/css" href="{% static 'pages/stars.css' %}">
+	 		Rating:
+			<div class="rating">
+	 		 	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+	 		</div>
+		</form>
+			<!----------------------------------------------------------------->
+
+		 <br>Comment:<br>
+			 <form>
+				 <textarea rows="1" cols="25" placeholder="Title"></textarea> <br>
+				 <textarea rows="5" cols="50" placeholder="Description"></textarea> <br>
+			 	 <button type="submit" class="btn btn-primary">Submit</button>
+				 </form>
+			</div>
+	</section>
+
+
+
 
 {% endblock %}
