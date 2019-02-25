@@ -10,5 +10,5 @@ urlpatterns = [
     url('login', views.LoginPageView.as_view(), name='login'),
     url('profile', login_required(views.ProfilePageView.as_view()), name='profile'),
     url('feed', login_required(views.FeedPageView.as_view()), name='feed'),
-    url('availability', views.AvailabilityPageView.as_view(), name='availability')
+    url('availability', login_required(views.AvailabilityPageView.as_view()), name='availability')
 ]
