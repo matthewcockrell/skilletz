@@ -4,10 +4,12 @@ python:
 - python
 addons:
   postgresql: "10.7"
+env:
+- DJANGO_SETTINGS_MODULE="skilletz.settings"
 install:
 - pip install -r requirements.txt
 before_script:
-- createdb --encoding=UTF-8 {{ project_name }} --username=postgres --owner=`whoami`
+- createdb --encoding=UTF-8 skilletz --username=postgres --owner=`whoami`
 script:
 - python manage.py migrate
 - python manage.py test
