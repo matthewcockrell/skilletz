@@ -34,6 +34,7 @@ def profile_page(request, computing_id):
     else:
         comment = Comment(computing_id = comp, comment_title = title, comment_descr = description, rating = stars)
         comment.save()
+        
     comments = Comment.objects.filter(computing_id = comp)
     context = {
         "users" : profile,
