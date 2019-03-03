@@ -34,7 +34,7 @@ def profile_page(request, computing_id):
     else:
         comment = Comment(computing_id = comp, comment_title = title, comment_descr = description, rating = stars)
         comment.save()
-        
+
     comments = Comment.objects.filter(computing_id = comp)
     context = {
         "users" : profile,
@@ -51,7 +51,7 @@ class ProfileEditView(UpdateView):
         return self.request.user.profile
 
     def get_success_url(self):
-        return reverse('pages:profile')
+        return reverse('pages:profile_page', kwargs={'computing_id':ProfileEditView.get_object(self).computing_id})
 
 class FeedPageView(TemplateView):
     template_name = 'pages/feed.html'

@@ -55,7 +55,7 @@
 		 <H5 class="display-6"> New Review for this User: </H5>
 
 		 {{form|crispy}}
-			 <form action="{% url 'pages:profile' user.computing_id %}" method="post">
+			 <form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
 				 {% csrf_token %}
 				 Rating: ☆<input type="radio" name="rating" value="☆">
 				 				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆<input type="radio" name="rating" value="☆☆">
