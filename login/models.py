@@ -25,7 +25,13 @@ class Profile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
-    
+
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+class Comment(models.Model):
+    computing_id = models.CharField(max_length=7, default = '')
+    comment_title = models.CharField(max_length = 500, default = '')
+    comment_descr = models.TextField(null=True)
+    rating = models.CharField(max_length = 10, default = 'one')

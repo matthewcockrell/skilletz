@@ -1,0 +1,19 @@
+language: python
+sudo: false
+python:
+- "3.5.3"
+env:
+- DJANGO_SETTINGS_MODULE="skilletz.settings"
+install:
+- pip install -r requirements.txt
+before_script:
+- python manage.py migrate
+script:
+- python manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: Fu7rUY0v+Anm22NltLfw2fzBdCglkxedVKemaQJUmiwjj6bK8HgNbqp054bC8W/YAS11C7GJsmEui7mfmjM5x/Qenh89bQfYkYPM6Nq/+8CCTx3fxlUouHJN9JnrPfKfdcvVwcI459OMBemraCg0bG0gBq2taFjRxZ5vaUHdYI0Wt0rEs1CSch5nwKdr9n6vEWEL/0e9CXL3TrSs7th0k8yHihFYrmnu4bgVRiWwyDvzni5YnDR3EWBlSC7hs64RUaUXVnJ0JzZFPcMdv1V46n8UoEWVp8RjuoLVicaFyNewBwnKn5CPVisFEHS/+e9r0T17531ZNzZzjD9UhMNrDK9WPTXR867QPqxxxkrzQgWwVpAJ/ao6QiNM2ULbVWp7SfxhQjvYkuWf6heJT7XKmMWeTp9pppYWoiow2fyY0Uyj3G4DCUXlKmxv9b1eoV5eCvvQApjfPY0bW/lFRKO1QgsPhYQ9NWA/Fnap2wxf7M1BR3n926ERJLy9o8PSkpvg23VlmnqVhRZrYMjVbGZqSO4NgL5wKUefeLOsisDBkZ3gzuMNZd2bCjTT/mlC5cQfVodY05dZ7DVdcW4SQJFjK655cD/tQBDJZsaMG1koubOoCPntu3QjEHVA32vwNGanqpoy3rrtbi4cipuIxJDiZ23aL4m6S8r9HMcnQ56BeeE=
+  app: skilletz-app
+  on:
+    all_branches: true
