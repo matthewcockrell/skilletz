@@ -32,6 +32,6 @@ class Profile(models.Model):
 
 class Comment(models.Model):
     computing_id = models.CharField(max_length=7, default = '')
-    comment_title = models.CharField(max_length = 500)
+    comment_title = models.CharField(max_length = 500, default = '')
     comment_descr = models.TextField(null=True)
-    rating = models.PositiveSmallIntegerField(default = 1)
+    rating = models.CharField(max_length = 10, default = 'one')
