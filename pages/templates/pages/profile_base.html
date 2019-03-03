@@ -11,11 +11,7 @@
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">
-				{% for user in users %}
-				  {{user.first_name}} {{user.last_name}}'s Profile<br>
-
-				</h1>
+			<h1 class="display-4">Profile Page Base Template</h1>
 			<hr class="my-4">
 		</div>
 	</div>
@@ -23,8 +19,8 @@
 		<section>
 			<i>Profile Picture Here </i>
 			<br><br>
-			<p>Name: {{user.first_name}} {{user.last_name}}</p>
-			<p>Email: {{user.computing_id}}@virginia.edu</p>
+			<p>Name: </p>
+			<p>Email:</p>
 			<p>Bio: </p>
 			<p>Upload Resume or Portfolio: </p>
 			<button type="submit" class="btn btn-success">Upload</button>
@@ -66,8 +62,5 @@
 				 </form>
 			</div>
 	</section>
-
-
-{%endfor%}
 
 {% endblock %}
