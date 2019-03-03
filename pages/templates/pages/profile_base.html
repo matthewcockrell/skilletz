@@ -1,0 +1,68 @@
+{% extends 'pages/authenticated.html' %}
+
+{% load static %}
+
+{% block pagename %}Profile{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Profile Page Base Template</h1><br>
+			<h4> To see an actual profile page, add the computing ID to the end of end of the url: (e.g. 'profile/mdc3kw')<br>
+				This page has no actual functionality.
+			<hr class="my-4">
+		</div>
+	</div>
+
+	<div>
+		<section>
+			<i>Profile Picture Here </i>
+			<br><br>
+			<p>Name: </p>
+			<p>Email:</p>
+			<p>Bio: </p>
+			<p>Upload Resume or Portfolio: </p>
+			<button type="submit" class="btn btn-success">Upload</button>
+		</section>
+	</div>
+</div>
+
+<br><br>
+<section>
+	 <H2 class="display-6"> Reviews and Comments: </H2>
+	 <div class = "jumbotron jumbotron-fluid">
+		 <div = "container">
+		 <b> Comment Title  - - -   <span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span> <br>	</b>First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
+		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆ </b><br>	First line of comment <br><br>
+		 <br><br>
+		 <H5 class="display-6"> New Review for this User: </H5>
+
+
+		 <form>
+		{{form|crispy}}
+
+			<!--Code for star rating from https://css-tricks.com/star-ratings/ -->
+	 		<link rel="stylesheet" type="text/css" href="{% static 'pages/stars.css' %}">
+	 		Rating:
+			<div class="rating">
+	 		 	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+	 		</div>
+		</form>
+
+		 <br>Comment:<br>
+			 <form>
+				 <textarea rows="1" cols="25" placeholder="Title"></textarea> <br>
+				 <textarea rows="5" cols="50" placeholder="Description"></textarea> <br>
+			 	 <button type="submit" class="btn btn-primary">Submit</button>
+				 </form>
+			</div>
+	</section>
+
+{% endblock %}

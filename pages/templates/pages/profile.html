@@ -11,15 +11,20 @@
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
-			<h1 class="display-4">Your Profile Page</h1>
+			<h1 class="display-4">
+				{% for user in users %}
+				  {{user.first_name}} {{user.last_name}}'s Profile<br>
+
+				</h1>
 			<hr class="my-4">
 		</div>
 	</div>
 	<div>
 		<section>
 			<i>Profile Picture Here </i>
-			<p>Name: </p>
-			<p>Email: </p>
+			<br><br>
+			<p>Name: {{user.first_name}} {{user.last_name}}</p>
+			<p>Email: {{user.computing_id}}@virginia.edu</p>
 			<p>Bio: </p>
 			<p>Upload Resume or Portfolio: </p>
 			<button type="submit" class="btn btn-success">Upload</button>
@@ -27,42 +32,46 @@
 	</div>
 </div>
 
+
+
+<!----------------------------------------------------------------------------->
+
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <br><br>
 <section>
 	 <H2 class="display-6"> Reviews and Comments: </H2>
 	 <div class = "jumbotron jumbotron-fluid">
 		 <div = "container">
-		 <b> Comment Title  - - -   <span>☆</b> <br>	First line of comment <br><br>
-		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
-		 <b> Comment Title  - - -   <span>☆</span><span>☆</span> <br>	</b>First line of comment <br><br>
-		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</b> <br>	First line of comment <br><br>
-		 <b> Comment Title  - - -   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆ </b><br>	First line of comment <br><br>
-		 <br><br>
+
+			 	{% for comment in comments %}
+				<i> {{request.user.profile.first_name}} says:</i><br>
+					<b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b> <br>
+					{{comment.comment_descr}} <br><br>
+				{%endfor%}
+
+			<br><br><br>
 		 <H5 class="display-6"> New Review for this User: </H5>
 
-
-		 <form>
-		{{form|crispy}}
-
-			<!--Code for star rating from https://css-tricks.com/star-ratings/-->
-	 		<link rel="stylesheet" type="text/css" href="{% static 'pages/stars.css' %}">
-	 		Rating:
-			<div class="rating">
-	 		 	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-	 		</div>
-		</form>
-			<!----------------------------------------------------------------->
-
-		 <br>Comment:<br>
-			 <form>
-				 <textarea rows="1" cols="25" placeholder="Title"></textarea> <br>
-				 <textarea rows="5" cols="50" placeholder="Description"></textarea> <br>
+		 {{form|crispy}}
+			 <form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
+				 {% csrf_token %}
+				 Rating: ☆<input type="radio" name="rating" value="☆">
+				 				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆<input type="radio" name="rating" value="☆☆">
+								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆<input type="radio" name="rating" value="☆☆☆">
+								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆<input type="radio" name="rating" value="☆☆☆☆">
+								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆<input type="radio" name="rating" value="☆☆☆☆☆">	<br>
+				 Title: <input type = "text" name="title">
+				 <label for = "title" Comment.comment_title</label>
+				 Description: <input type = "text" name="description">
+				 <label for ="description" Comment.comment_descr</label>
 			 	 <button type="submit" class="btn btn-primary">Submit</button>
 				 </form>
 			</div>
 	</section>
 
 
-
+{%endfor%}
 
 {% endblock %}
