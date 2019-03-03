@@ -1,5 +1,6 @@
 # Caching
 __pycache__/
+staticfiles/
 
 # Virtual Environment
 venv/
