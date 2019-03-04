@@ -1,31 +1,26 @@
-{% extends 'pages/authenticated.html' %}
-
-{% load static %}
-
-{% block pagename %}Profile{% endblock %}
-
-{% block content %}
-
+{% extends 'pages/authenticated.html' %} {% load static %} {% block pagename %}Profile{% endblock %} {% block content %}
 {% load crispy_forms_tags %}
 
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">
-				{% for user in users %}
-				  {{user.first_name}} {{user.last_name}}'s Profile<br>
+				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile
+				<br>
 
-				</h1>
+			</h1>
 			<hr class="my-4">
 		</div>
 	</div>
 	<div>
 		<section>
 			<i>Profile Picture Here </i>
-			<br><br>
+			<br>
+			<br>
 			<p>Name: {{user.first_name}} {{user.last_name}}</p>
 			<p>Email: {{user.computing_id}}@virginia.edu</p>
 			<p>Bio: </p>
+			<p><a href="https://skilletz-app.herokuapp.com/availability">Calendar</a></p>
 			<p>Upload Resume or Portfolio: </p>
 			<button type="submit" class="btn btn-success">Upload</button>
 		</section>
@@ -38,40 +33,48 @@
 
 
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<br><br>
+{% if error_message %}
+<p>
+	<strong>{{ error_message }}</strong>
+</p>{% endif %}
+<br>
+<br>
 <section>
-	 <H2 class="display-6"> Reviews and Comments: </H2>
-	 <div class = "jumbotron jumbotron-fluid">
-		 <div = "container">
+	<H2 class="display-6"> Reviews and Comments: </H2>
+	<div class="jumbotron jumbotron-fluid">
+		<div="container">
 
-			 	{% for comment in comments %}
-				<i> {{request.user.profile.first_name}} says:</i><br>
-					<b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b> <br>
-					{{comment.comment_descr}} <br><br>
-				{%endfor%}
+			{% for comment in comments %}
+			<i> {{request.user.profile.first_name}} says:</i>
+			<br>
+			<b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b>
+			<br> {{comment.comment_descr}}
+			<br>
+			<br> {%endfor%}
 
-			<br><br><br>
-		 <H5 class="display-6"> New Review for this User: </H5>
+			<br>
+			<br>
+			<br>
+			<H5 class="display-6"> New Review for this User: </H5>
 
-		 {{form|crispy}}
-			 <form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
-				 {% csrf_token %}
-				 Rating: ☆<input type="radio" name="rating" value="☆">
-				 				 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆<input type="radio" name="rating" value="☆☆">
-								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆<input type="radio" name="rating" value="☆☆☆">
-								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆<input type="radio" name="rating" value="☆☆☆☆">
-								 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆<input type="radio" name="rating" value="☆☆☆☆☆">	<br>
-				 Title: <input type = "text" name="title">
-				 <label for = "title" Comment.comment_title</label>
-				 Description: <input type = "text" name="description">
-				 <label for ="description" Comment.comment_descr</label>
-			 	 <button type="submit" class="btn btn-primary">Submit</button>
-				 </form>
-			</div>
-	</section>
+			{{form|crispy}}
+			<form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
+				{% csrf_token %} Rating: ☆
+				<input type="radio" name="rating" value="☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆
+				<input type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
+				<input type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
+				<input type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
+				<input type="radio" name="rating" value="☆☆☆☆☆">
+				<br> Title:
+				<input type="text" name="title">
+				<label for="title" Comment.comment_title</label>
+					Description:
+					<input type="text" name="description">
+					<label for="description" Comment.comment_descr</label>
+						<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+	</div>
+</section>
 
 
-{%endfor%}
-
-{% endblock %}
+{%endfor%} {% endblock %}
