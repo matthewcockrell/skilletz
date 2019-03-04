@@ -37,3 +37,26 @@ class Comment(models.Model):
     comment_title = models.CharField(max_length = 500, default = '')
     comment_descr = models.TextField(null=True)
     rating = models.CharField(max_length = 10, default = 'one')
+
+#class Hour(models.Model):
+#    Date = models.CharField(max_length=10, default='')
+ #   Hour = models.CharField(max_lenth=100,default='')
+
+ #class Day(models.Model):
+ #   Date = models.CharField(max_length=10, default='')
+  #  Hour_9 = models.ManyToManyField(Hour, related_name= "Hour_9")
+   # Hour_10 = models.ManyToManyField(Hour, related_name= "Hour_10")
+    #Hour_11 = models.ManyToManyField(Hour, related_name= "Hour_11")
+    #Hour_12 = models.ManyToManyField(Hour, related_name= "Hour_12")
+    #Hour_13 = models.ManyToManyField(Hour, related_name= "Hour_13")
+    #Hour_14 = models.ManyToManyField(Hour, related_name= "Hour_14")
+    #Hour_15 = models.ManyToManyField(Hour, related_name= "Hour_15")
+    #Hour_16 = models.ManyToManyField(Hour, related_name= "Hour_16")
+    #Hour_17 = models.ManyToManyField(Hour, related_name= "Hour_17")
+    #Hour_18 = models.ManyToManyField(Hour, related_name= "Hour_18")
+    #Hour_19 = models.ManyToManyField(Hour, related_name= "Hour_19")
+    #Hour_20 = models.ManyToManyField(Hour, related_name= "Hour_20")
+    #Hour_21 = models.ManyToManyField(Hour, related_name= "Hour_21")
+    #Hour_22 = models.ManyToManyField(Hour, related_name= "Hour_22")
+    #Hour_23 = models.ManyToManyField(Hour, related_name= "Hour_23")
+    #Hour_24 = models.ManyToManyField(Hour, related_name= "Hour_24")

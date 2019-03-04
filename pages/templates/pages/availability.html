@@ -14,26 +14,29 @@
 	<div>
 		<div class="jumbotron jumbotron-fluid">
 			<div class="container">
-				<h1 class="display-4">Your Availability Page</h1>
-				<hr class="my-4">
+				<h1 class="display-4">
+					Your Availability Page
+				</h1>
 			</div>
 		</div>
-		<div>
-			<form action = "/action_page.php" target = "_self" method = "post">
-				<p>Name: </p>
-				Subject: <br>
-				<input type="text" name = "Subject"><br>
-				<input type="radio" name = "Times" value="sunday">Sunday<br>
-				<input type="radio" name = "Times" value="monday">Monday<br>
-				<input type="radio" name = "Times" value="tuesday">Tuesday<br>
-				<input type="radio" name = "Times" value="wednesday">Wednesday<br>
-				<input type="radio" name = "Times" value="thursday">Thursday<br>
-				<input type="radio" name = "Times" value="friday">Friday<br>
-				<input type="radio" name = "Times" value="saturday">Saturday
-				<button type="submit" class="btn btn-success">Upload</button>
-			</form>
-		</div>
+		<table style="width:100%">
+			<tr>
+				{% for day in days_to_view %}
+					<th>{{ day }}</th>
+				{% endfor %}
+			</tr>
+			{% for hour in accessible_hours %}
+				<tr>
+					{% for day in days_to_view %}
+						<td>
+							{{ hour }}
+						</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
 	</div>
 </body>
 
 {% endblock %}
+
