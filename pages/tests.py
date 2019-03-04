@@ -7,7 +7,6 @@ from login.models import Profile
 class TestViews(TestCase):
     def test_feed_populate(self):
         client = Client()
-        response = client.get('/')
         client.force_login(User.objects.get_or_create(username='testuser')[0])
         profile_list = Profile.objects.all()
         request = client.get('/feed/',{'first_name':'Marina', 'last_name':'Kun'})
