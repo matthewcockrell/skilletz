@@ -14,13 +14,13 @@ def new_user(request):
         if form.is_valid():
             profile_to_save = form.save(commit=False) # don't commit yet so we can add the user
 
-            request.user.profile.profile_pic = profile_to_save.profile_pic
+            #request.user.profile.profile_pic = profile_to_save.profile_pic
             request.user.profile.first_name = profile_to_save.first_name
             request.user.profile.last_name = profile_to_save.last_name
             request.user.profile.graduation_year = profile_to_save.graduation_year
             request.user.profile.major = profile_to_save.major
             request.user.profile.computing_id = profile_to_save.computing_id
-            request.user.profile.resume = profile_to_save.resume
+            #request.user.profile.resume = profile_to_save.resume
 
             request.user.profile.save()
 
