@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
 from login.models import Profile
+from .filters import ProfileFilter
 
 #T6: User navigates to the landing page
 class TestViews(TestCase):
@@ -37,5 +38,6 @@ class TestViews(TestCase):
         client = Client()
         client.force_login(User.objects.get_or_create(username='testuser')[0])
         profile_list = Profile.objects.all()
-        request = client.get('/feed/',{'first_name':'Marina', 'last_name':'Kun'})
-        self.assertEqual(len(filter.qs),1)
+        response = client.get('/feed/',{'first_name':'Marina', 'last_name':'Kun'})
+        profile_filter = ProfileFilter(response, queryset=profile_list)
+        self.assertEqual(len(profile_filter.qs),1)
