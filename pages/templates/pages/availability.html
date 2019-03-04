@@ -1,0 +1,39 @@
+{% extends 'pages/profile.html' %}
+
+{% load static %}
+
+{% block pagename %}Profile{% endblock %}
+
+{% block pagecontent %}
+
+<head>
+	<TITLE> Skilletz - Student Availability Page </TITLE>
+</head>
+
+<body>
+	<div>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1 class="display-4">Your Availability Page</h1>
+				<hr class="my-4">
+			</div>
+		</div>
+		<div>
+			<form action = "/action_page.php" target = "_self" method = "post">
+				<p>Name: </p>
+				Subject: <br>
+				<input type="text" name = "Subject"><br>
+				<input type="radio" name = "Times" value="sunday">Sunday<br>
+				<input type="radio" name = "Times" value="monday">Monday<br>
+				<input type="radio" name = "Times" value="tuesday">Tuesday<br>
+				<input type="radio" name = "Times" value="wednesday">Wednesday<br>
+				<input type="radio" name = "Times" value="thursday">Thursday<br>
+				<input type="radio" name = "Times" value="friday">Friday<br>
+				<input type="radio" name = "Times" value="saturday">Saturday
+				<button type="submit" class="btn btn-success">Upload</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+{% endblock %}
