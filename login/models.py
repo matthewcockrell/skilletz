@@ -9,13 +9,11 @@ from .majors import UVA_MAJOR_CHOICES
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    profile_pic = models.ImageField(upload_to='/images')
     first_name = models.CharField(max_length=50, default='')
     last_name = models.CharField(max_length=50, default='')
     graduation_year = models.PositiveSmallIntegerField(default=2000)
     major = models.CharField(max_length=100, choices=UVA_MAJOR_CHOICES, default='Undeclared')
     computing_id = models.CharField(max_length=7, default = '')
-    resume = models.FileField(upload_to='/documents')
 
     def has_been_initialized(self):
         return len(self.first_name) > 0 or len(self.last_name) > 0 or self.graduation_year != 2000 or self.major != 'Undeclared' or self.computing_id != ''
