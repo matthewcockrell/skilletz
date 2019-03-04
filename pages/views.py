@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
+from .filters import ProfileFilter
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from login.models import Profile, Comment
@@ -53,8 +54,11 @@ class ProfileEditView(UpdateView):
     def get_success_url(self):
         return reverse('pages:profile_page', kwargs={'computing_id':ProfileEditView.get_object(self).computing_id})
 
-class FeedPageView(TemplateView):
-    template_name = 'pages/feed.html'
+# Create your views here.
+def search(request):
+    profile_list = Profile.objects.all()
+    profile_filter = ProfileFilter(request.GET, queryset=profile_list)
+    return render(request, 'pages/profile_list.html', {'filter': profile_filter})
 
 class AvailabilityPageView(TemplateView):
     template_name = 'pages/availability.html'
