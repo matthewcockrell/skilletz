@@ -113,7 +113,7 @@ LOGOUT_REDIRECT_URL = '/'
 POST_LOGIN_HOME_URL = 'pages:feed'
 
 MEDIA_ROOT = '/media/'
-MEDIA_URL = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
