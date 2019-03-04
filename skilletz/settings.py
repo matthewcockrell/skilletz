@@ -112,6 +112,9 @@ SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
 LOGOUT_REDIRECT_URL = '/'
 POST_LOGIN_HOME_URL = 'pages:feed'
 
+MEDIA_ROOT = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media')
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
