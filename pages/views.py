@@ -96,5 +96,3 @@ def availability(request):
     }
 
     return render(request, 'pages/availability.html', context)
-
-
