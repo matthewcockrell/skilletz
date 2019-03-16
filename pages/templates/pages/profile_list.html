@@ -14,7 +14,7 @@
 		<ul>
 			{% for profile in filter.qs %}
 			<li>
-				{{profile.user}} - {{profile.first_name}} {{profile.last_name}}
+					<a class="nav-link" href="{% url 'pages:profile' %}/{{profile.user}}">{{profile.user}} - {{profile.first_name}} {{profile.last_name}}</a>
 			</li>
 			{% endfor %}
 		</ul>
