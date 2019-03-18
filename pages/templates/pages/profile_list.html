@@ -1,4 +1,4 @@
-{% extends 'pages/authenticated.html' %} {% block content %}
+{% extends 'pages/authenticated.html' %} {% block content %} {% load widget_tweaks %}
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -8,13 +8,25 @@
 	</div>
 	<div>
 		<form method="get">
-			{{filter.form.as_p}}
-			<button type="submit">Search</button>
+			<div class="well">
+				<h4 style="margin-top: 0">Filter</h4>
+				<div class="row">
+					<div class="form-group col-sm-4 col-md-3">
+						{{ filter.form.first_name.label_tag}} {% render_field filter.form.first_name class="form-control" %}
+					</div>
+					<div class="form-group col-sm-4 col-md-4">
+
+					</div>
+				</div>
+				{{filter.form.as_p}}
+				<button type="submit">Search</button>
+			</div>
+
 		</form>
 		<ul>
 			{% for profile in filter.qs %}
 			<li>
-					<a class="nav-link" href="{% url 'pages:profile' %}/{{profile.user}}">{{profile.user}} - {{profile.first_name}} {{profile.last_name}}</a>
+				<a class="nav-link" href="{% url 'pages:profile' %}/{{profile.user}}">{{profile.user}} - {{profile.first_name}} {{profile.last_name}}</a>
 			</li>
 			{% endfor %}
 		</ul>
