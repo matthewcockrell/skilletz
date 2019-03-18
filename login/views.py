@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 
 def new_user(request):
     if request.method == 'POST':
-        form = NewProfileForm(request.POST, request.FILES)
+        form = NewProfileForm(request.POST)
         if form.is_valid():
             profile_to_save = form.save(commit=False) # don't commit yet so we can add the user
 
