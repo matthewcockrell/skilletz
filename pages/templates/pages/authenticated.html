@@ -3,16 +3,16 @@
 	<div style="background: #343a40">
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
-				<a class="link" href="{% url 'pages:feed' %}">Main Feed</a>
+				<a class="nav-link" " href="{% url 'pages:feed' %} ">Main Feed</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'pages:profile' %}/{{request.user.profile.computing_id}}">Your Profile</a>
+			<li class="nav-item ">
+				<a class="nav-link " href="{% url 'pages:profile' %}/{{request.user.profile.computing_id}} ">Your Profile</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'pages:edit_profile' %}">Edit Profile</a>
+			<li class="nav-item ">
+				<a class="nav-link " href="{% url 'pages:edit_profile' %} ">Edit Profile</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'login:logout' %}">Logout</a>
+			<li class="nav-item ">
+				<a class="nav-link " href="{% url 'login:logout' %} ">Logout</a>
 			</li>
 		</ul>
 	</div>
