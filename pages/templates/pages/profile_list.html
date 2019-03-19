@@ -8,55 +8,62 @@
 	</div>
 	<div style="padding-left: 5%; padding-right: 5%">
 		<form method="get">
-			<div class="well">
-				<h4 style="margin-top: 0">Filter</h4>
-				<div class="row">
-					<div class="form-group col-sm-4 col-md-3">
-						{{ filter.form.first_name.label_tag}} {% render_field filter.form.first_name class="form-control" %}
+			<div class="well" style="background: #f4f6f7; border-radius:25px; border: 1px solid #343a40">
+				<div class="well-form" style=" margin:3.5%;">
+					<h4 style="margin-top: 0">Filter</h4>
+					<div class="row">
+						<div class="form-group col-sm-4 col-md-4">
+							{{ filter.form.first_name.label_tag}} {% render_field filter.form.first_name class="form-control" %}
+						</div>
+						<div class="form-group col-sm-4 col-md-4">
+							{{ filter.form.last_name.label_tag}} {% render_field filter.form.last_name class="form-control" %}
+						</div>
+						<div class="form-group col-sm-4 col-md-4">
+							{{ filter.form.computing_id.label_tag}} {% render_field filter.form.computing_id class="form-control" %}
+						</div>
+						<div class="form-group col-sm-4 col-md-4">
+							{{ filter.form.major.label_tag}} {% render_field filter.form.major class="form-control" %}
+						</div>
 					</div>
-					<div class="form-group col-sm-4 col-md-4">
-						{{ filter.form.last_name.label_tag}} {% render_field filter.form.last_name class="form-control" %}
-					</div>
-					<div class="form-group col-sm-4 col-md-4">
-						{{ filter.form.computing_id.label_tag}} {% render_field filter.form.computing_id class="form-control" %}
-					</div>
-					<div class="form-group col-sm-4 col-md-4">
-						{{ filter.form.major.label_tag}} {% render_field filter.form.major class="form-control" %}
-					</div>
+					<center>
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-search"></span> Search </button>
+					</center>
 				</div>
-				<button type="submit" class="btn btn-primary">
-					<span class="glyphicon glyphicon-search"></span> Search </button>
 			</div>
 		</form>
+		<br>
 		</br>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th> Name</th>
-					<th> Major</th>
-					<th> Computing ID</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for profile in filter.qs %}
-				<tr>
-					<td>
-						<a class="nav-link" href="{% url 'pages:profile' %}/{{profile.user}}">{{profile.first_name}} {{profile.last_name}}</a>
-					</td>
-					<td>
-						{{profile.major}}
-					</td>
-					<td>
-						{{profile.computing_id}}
-					</td>
-				</tr>
-				{% empty %}
-				<tr>
-					<td colspan="5">No data</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+		<div style="border: 1px solid #343a40; margin-bottom: 50px">
+			<table class=" table table-hover ">
+				<thead class="thead-light">
+					<tr>
+						<th> Name</th>
+						<th> Major</th>
+						<th> Computing ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for profile in filter.qs %}
+					<tr>
+						<td>
+							<a class="nav-link " href="{% url 'pages:profile' %}/{{profile.user}} ">{{profile.first_name}} {{profile.last_name}}</a>
+						</td>
+						<td>
+							{{profile.major}}
+						</td>
+						<td>
+							{{profile.computing_id}}
+						</td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="5 ">No data</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 {% endblock %}
