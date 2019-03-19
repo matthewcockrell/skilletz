@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator
 
 from .majors import UVA_MAJOR_CHOICES
 
@@ -31,6 +32,14 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+class Course(models.Model):
+    mnemonic = models.CharField(max_length=4, help_text='Ex. CS')
+    number = models.PositiveSmallIntegerField(help_text='Ex. 3240', validators=[MaxValueValidator(9999)])
+    title = models.CharField(max_length=100, help_text='Ex. Adv. Software Development Methods')
+
+    def __str__(self):
+        return '{} {}: {}'.format(self.mnemonic, self.number, self.title)
 
 class Comment(models.Model):
     computing_id = models.CharField(max_length=7, default = '')
