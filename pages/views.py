@@ -3,6 +3,7 @@ import datetime
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from .filters import ProfileFilter
+from .forms import ProfileEditForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from login.models import Profile, Comment
@@ -47,7 +48,7 @@ def profile_page(request, computing_id):
 
 class ProfileEditView(UpdateView):
     model = Profile
-    fields = ['first_name', 'last_name', 'graduation_year', 'major', 'computing_id']
+    form_class = ProfileEditForm
     template_name_suffix = '_update_form'
 
     def get_object(self):
