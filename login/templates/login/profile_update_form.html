@@ -1,11 +1,5 @@
-{% extends 'pages/authenticated.html' %}
-
-{% load static %}
-{% load crispy_forms_tags %}
-
-{% block pagename %}Update Profile{% endblock %}
-
-{% block content %}
+{% extends 'pages/authenticated.html' %} {% load static %} {% load crispy_forms_tags %} {% block pagename %}Update Profile
+{% endblock %} {% block content %}
 <div>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -14,12 +8,13 @@
             <p class="lead"></p>
         </div>
     </div>
-    <div class="container">
-		<form method="post">
-			{% csrf_token %}
-			{{ form|crispy }}
-			<input type="submit" value="Update">
-		</form>
+    <div class="container" style="padding-bottom: 50px; width: 70%;">
+        <form method="post">
+            {% csrf_token %} {{ form|crispy }}
+            <center>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px"> Update </button>
+            </center>
+        </form>
     </div>
 </div>
 {% endblock %}
