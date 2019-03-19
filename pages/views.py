@@ -47,7 +47,7 @@ def profile_page(request, computing_id):
 
 class ProfileEditView(UpdateView):
     model = Profile
-    fields = ['first_name', 'last_name', 'graduation_year', 'major', 'computing_id']
+    fields = ['profile_pic', 'first_name', 'last_name', 'graduation_year', 'major', 'computing_id', 'resume']
     template_name_suffix = '_update_form'
 
     def get_object(self):

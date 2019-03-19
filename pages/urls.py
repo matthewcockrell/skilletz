@@ -1,6 +1,9 @@
 from django.conf.urls import url
 from django.urls import path
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 from . import views
 
@@ -14,4 +17,4 @@ urlpatterns = [
     url(r'edit$', login_required(views.ProfileEditView.as_view()), name='edit_profile'),
     url('feed', login_required(views.search), name='feed'),
     url('availability', views.availability, name='availability'),
-]
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
