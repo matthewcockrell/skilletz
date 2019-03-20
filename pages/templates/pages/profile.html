@@ -19,7 +19,7 @@
 		<section>
 			<br>
 			<center>
-				<i>Profile Picture Here </i>
+				<img src=" {{ user.profile_pic.url }} " alt="User has not uploaded a profile picture yet." height="200" width="200">
 				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
 					<p> Insert Bio here!</p>
 				</div>
@@ -27,8 +27,7 @@
 			<p>
 				<a href="https://skilletz-app.herokuapp.com/availability">Calendar</a>
 			</p>
-			<p>Upload Resume or Portfolio: </p>
-			<button type="submit" class="btn btn-success">Upload</button>
+			<p><a href=" {{ user.resume.url }} " target="blank"> Resume </a></p>
 		</section>
 	</div>
 </div>
