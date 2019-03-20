@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="container" style="padding-bottom: 50px; width: 70%;">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
             {% csrf_token %} {{ form|crispy }}
             <center>
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px"> Update </button>
