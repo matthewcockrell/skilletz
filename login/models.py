@@ -30,6 +30,7 @@ class Profile(models.Model):
     computing_id = models.CharField(max_length=7, default = '')
     #resume = models.FileField(upload_to='documents/')
     courses = models.ManyToManyField(Course)
+    bio = models.TextField(null=True)
 
     def has_been_initialized(self):
         return len(self.first_name) > 0 or len(self.last_name) > 0 or self.graduation_year != 2000 or self.major != 'Undeclared' or self.computing_id != ''
