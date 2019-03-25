@@ -1,12 +1,6 @@
-{% extends 'pages/base.html' %}
-
-{% load static %}
-
-{% block pagename %}Home{% endblock %}
-
-{% block pagecontent %}
-<div> 
-	<div class="container">
+{% extends 'pages/base.html' %} {% load static %} {% block pagename %}Home{% endblock %} {% block pagecontent %}
+<div>
+	<div style="background: #343a40">
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'social:begin' 'google-oauth2' %}">Login</a>

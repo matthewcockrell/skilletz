@@ -35,3 +35,9 @@ class TestLogin(TestCase):
 
         response = views.new_user(req)
         self.assertRedirects(response, reverse('pages:feed'), fetch_redirect_response=False)
+
+    def test_logout(self):
+        client = Client()
+        client.force_login(User.objects.get_or_create(username='testuser')[0])
+        response = client.logout()
+        self.assertTemplateUsed(response, 'pages/home.html')

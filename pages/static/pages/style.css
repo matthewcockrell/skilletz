@@ -1,3 +1,6 @@
 /*
  * Only for special CSS, most should probably be done with Bootstrap classes
  */
+a.link:link{
+    color: white;
+}
