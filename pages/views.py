@@ -88,8 +88,9 @@ def availability(request):
         list.append(days_to_view, "{}/{}/{}".format(
             month, day + i, year))
 
-    for i in range(16):
-        list.append(accessible_hours, "{}:00".format(9 + i))
+    list.append(accessible_hours, "9:00")
+    for i in range(15):
+        list.append(accessible_hours, "{}:00".format(10 + i))
 
     context = {
         "accessible_hours": accessible_hours,
