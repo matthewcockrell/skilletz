@@ -81,12 +81,14 @@ def availability(request):
     accessible_hours = []
     current_data = datetime.datetime.now()
 
-    for i in range(7):
-        month = current_data.month
-        day = int(current_data.day)
-        year = current_data.year
-        list.append(days_to_view, "{}/{}/{}".format(
-            month, day + i, year))
+    list.append(days_to_view, "Sunday")
+    list.append(days_to_view, "Monday")
+    list.append(days_to_view, "Tuesday")
+    list.append(days_to_view, "Wednesday")
+    list.append(days_to_view, "Thursday")
+    list.append(days_to_view, "Friday")
+    list.append(days_to_view, "Saturday")
+
 
     list.append(accessible_hours, "9:00")
     for i in range(15):
