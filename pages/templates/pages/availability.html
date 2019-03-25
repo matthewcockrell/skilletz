@@ -19,26 +19,39 @@
 				</h1>
 			</div>
 		</div>
-		<table style="width:100%">
-			<tr>
-				<th>Sunday</th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thursday</th>
-				<th>Friday</th>
-				<th>Saturday</th>
-			</tr>
-			{% for hour in accessible_hours %}
+		<form>
+			<table style="width:100%">
 				<tr>
-					{% for day in days_to_view %}
-						<td contenteditable="true">
-							{{ hour }}
-						</td>
-					{% endfor %}
+					<th>Sunday</th>
+					<th></th>
+					<th>Monday</th>
+					<th></th>
+					<th>Tuesday</th>
+					<th></th>
+					<th>Wednesday</th>
+					<th></th>
+					<th>Thursday</th>
+					<th></th>
+					<th>Friday</th>
+					<th></th>
+					<th>Saturday</th>
 				</tr>
-			{% endfor %}
-		</table>
+				{% for hour in accessible_hours %}
+					<tr>
+						{% for day in days_to_view %}
+							<td contenteditable="true">
+								{{ hour }}:
+							</td>
+							<td>
+								<input = "text"  size = "12" value = "" readonly />
+							</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+			<input type="button" id="edit" value="Edit" />
+  			<input type="button" id="save" value="Save" />
+		</form>
 	</div>
 </body>
 
