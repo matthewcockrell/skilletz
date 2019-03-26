@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import django_heroku
-import stat
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -73,7 +72,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
             ],
         },
     },
@@ -115,12 +113,8 @@ SOCIAL_AUTH_NEW_USER_REDIRECT_URL = reverse_lazy('login:new_user')
 LOGOUT_REDIRECT_URL = '/'
 POST_LOGIN_HOME_URL = 'pages:feed'
 
-MEDIA_ROOT = '/tmp/'
-MEDIA_URL = os.path.join(BASE_DIR, 'tmp/')
-STATIC_ROOT = os.path.join (BASE_DIR, 'static/')
-
-FILE_UPLOAD_PERMISSIONS = stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP
-FILE_UPLOAD_MAX_MEMORY_SIZE = 3000000
+MEDIA_ROOT = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
