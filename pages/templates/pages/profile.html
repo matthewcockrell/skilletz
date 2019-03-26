@@ -19,25 +19,19 @@
 		<section>
 			<br>
 			<center>
-				<i>Profile Picture Here </i>
-				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-					<p><b>About me: </b></p>
-					{{user.bio}}
-				</div>
-			</center>
-			<center>
-				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40"
-				<p><b> My Current Courses: </b></p>
-				{% for course in user.courses.all %}
-						{{course.mnemonic}} {{course.number}}: {{course.title}}<br>
-				{% endfor %}
+                {% if user.profile_pic %}
+				    <img src=" {{ user.profile_pic.url }} " alt="User has not uploaded a profile picture yet." height="200" width="200">
+				{% endif %}
+                <div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
+					<p> Insert Bio here!</p>
 				</div>
 			</center>
 			<p>
 				<a href="https://skilletz-app.herokuapp.com/availability">Calendar</a>
 			</p>
-			<p>Upload Resume or Portfolio: </p>
-			<button type="submit" class="btn btn-success">Upload</button>
+            {% if user.resume %}
+			    <p><a href=" {{ user.resume.url }} " target="blank"> Resume </a></p>
+            {% endif %}
 		</section>
 	</div>
 </div>
@@ -54,6 +48,7 @@
 		<div="container">
 
 			{% for comment in comments %}
+			<i> {{request.user.profile.first_name}} says:</i>
 			<br>
 			<b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b>
 			<br> {{comment.comment_descr}}
