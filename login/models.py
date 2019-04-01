@@ -7,6 +7,17 @@ from django.core.validators import MaxValueValidator
 
 from .majors import UVA_MAJOR_CHOICES
 
+class Hour(models.Model):
+    class Meta:
+        ordering = ('day', 'hour')
+
+    day = models.PositiveSmallIntegerField(help_text='Index of day within week (Ex. Sun = 0, Mon = 1, ... Sat = 6)')
+    hour = models.PositiveSmallIntegerField(help_text='Index of hor within day (Ex. 12am = 0, 1am = 1, ... 11pm = 23)')
+    display_text = models.CharField(max_length=20, help_text='display string used in views')
+
+    def __str__(self):
+        return self.display_text
+
 class Course(models.Model):
     class Meta:
         ordering = ('mnemonic', 'number',)
@@ -31,6 +42,7 @@ class Profile(models.Model):
     #resume = models.FileField(upload_to='documents/')
     courses = models.ManyToManyField(Course)
     bio = models.TextField(null=True)
+    availability = models.ManyToManyField(Hour, through='AvailabilityEntry')
 
     def has_been_initialized(self):
         return len(self.first_name) > 0 or len(self.last_name) > 0 or self.graduation_year != 2000 or self.major != 'Undeclared' or self.computing_id != ''
@@ -46,6 +58,11 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+class AvailabilityEntry(models.Model):
+    hour = models.ForeignKey(Hour, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    notes = models.CharField(max_length=50, help_text='Additional notes for this hour')
 
 class Comment(models.Model):
     computing_id = models.CharField(max_length=7, default = '')
