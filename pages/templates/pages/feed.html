@@ -1,16 +1,10 @@
-{% extends 'pages/authenticated.html' %}
-
-{% load static %}
-
-{% block pagename %}Feed{% endblock %}
-
-{% block content %}
+{% extends 'pages/authenticated.html' %} {% load static %} {% block pagename %}Feed{% endblock %} {% block content %}
 <div>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Feed</h1>
             <hr class="my-4">
-            <p class="lead">Welcome, {{ request.user.profile.first_name }}</p>
+            <p class="lead">Welcome, dude{{ request.user.profile.first_name }}</p>
         </div>
     </div>
     <div class="container">
