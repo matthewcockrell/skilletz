@@ -1,12 +1,12 @@
 import datetime
-
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
 from .filters import ProfileFilter
 from .forms import ProfileEditForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from login.models import Profile, Comment
+from login.models import Profile, Comment, Course, Identifier
 
 from login.models import Profile
 
@@ -23,9 +23,17 @@ def profile_page(request, computing_id):
     comp = computing_id
     profile = Profile.objects.filter(computing_id = comp)
     comments = Comment.objects.filter(computing_id = comp)
+    identify = Identifier(computing_id = computing_id)
+    bool = True
+    people = request.user.profile.people_who_I_like.all()
+    for person in people:
+        if person.computing_id == computing_id:
+            bool = False
+
     context = {
         "users" : profile,
-        "comments" : comments
+        "comments" : comments,
+        "bool" : bool
         }
 
     try:
@@ -42,9 +50,29 @@ def profile_page(request, computing_id):
     comments = Comment.objects.filter(computing_id = comp)
     context = {
         "users" : profile,
-        "comments" : comments
+        "comments" : comments,
+        "bool" : bool
         }
     return render(request, 'pages/profile.html', context)
+
+def like_button(request, computing_id):
+    myStr = "You just clicked the like button for " + computing_id
+
+    comp = computing_id
+    profile = Profile.objects.filter(computing_id = comp)
+    comments = Comment.objects.filter(computing_id = comp)
+    context = {
+        "users" : profile,
+        "comments" : comments
+        }
+    identify_who_I_like = Identifier(computing_id = computing_id)
+    identify_who_likes_me = Identifier(computing_id = request.user.profile.computing_id)
+    identify_who_I_like.save()
+    identify_who_likes_me.save()
+    request.user.profile.people_who_I_like.add(identify_who_I_like)
+    profile[0].people_who_like_me.add(identify_who_likes_me)
+    redir = '/profile/' + computing_id
+    return redirect(redir)
 
 class ProfileEditView(UpdateView):
     model = Profile

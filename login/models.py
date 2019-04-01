@@ -18,6 +18,8 @@ class Course(models.Model):
     def __str__(self):
         return '{} {}: {}'.format(self.mnemonic, self.number, self.title)
 
+class Identifier(models.Model):
+    computing_id = models.TextField(null=True)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -31,6 +33,8 @@ class Profile(models.Model):
     resume = models.FileField(upload_to='documents/', default='', blank=True)
     courses = models.ManyToManyField(Course)
     bio = models.TextField(null=True)
+    people_who_I_like = models.ManyToManyField(Identifier, related_name = 'people_who_I_like')
+    people_who_like_me = models.ManyToManyField(Identifier, related_name = 'people_who_like_me')
 
     def has_been_initialized(self):
         return len(self.first_name) > 0 or len(self.last_name) > 0 or self.graduation_year != 2000 or self.major != 'Undeclared' or self.computing_id != ''
@@ -52,4 +56,3 @@ class Comment(models.Model):
     comment_title = models.CharField(max_length = 500, default = '')
     comment_descr = models.TextField(null=True)
     rating = models.CharField(max_length = 10, default = 'one')
-
