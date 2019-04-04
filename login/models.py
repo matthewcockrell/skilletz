@@ -6,13 +6,6 @@ from django.dispatch import receiver
 from django.core.validators import MaxValueValidator
 
 from .majors import UVA_MAJOR_CHOICES
-class Hour(models.Model):
-    class Meta:
-        ordering = ('day', 'hour')
-
-    day = models.PositiveSmallIntegerField(help_text='Index of day within week (Ex. Sun = 0, Mon = 1, ... Sat = 6)')
-    hour = models.PositiveSmallIntegerField(help_text='Index of hor within day (Ex. 12am = 0, 1am = 1, ... 11pm = 23)')
-    display_text = models.CharField(max_length=20, help_text='display string used in views')
 
 class Hour(models.Model):
     class Meta:
