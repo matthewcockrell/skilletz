@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'edit$', login_required(views.ProfileEditView.as_view()), name='edit_profile'),
     url('feed', login_required(views.search), name='feed'),
     url('availability', views.availability, name='availability'),
-]
+    path(r'like/<str:computing_id>', views.like_button, name='like'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
