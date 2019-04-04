@@ -60,8 +60,7 @@
 						<td>
 							{%for person in request.user.profile.people_who_I_like.all%}
 								{%if person.computing_id == profile.computing_id%}
-								  <img src="{% static 'images/smiley.png' %}"> <!--Image Source: https://unityofclearwater.org/wp-content/uploads/2014/11/smiley_face.png-->
-
+								  <img src="{% static 'images/smiley.png' %}"> 
 								{%endif%}
 							{%endfor%}
 							</td>
