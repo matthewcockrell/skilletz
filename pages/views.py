@@ -7,9 +7,7 @@ from .filters import ProfileFilter
 from .forms import ProfileEditForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from login.models import Profile, Comment, Course, Identifier, AvailabilityEntry
-
-from login.models import Profile, AvailabilityEntry
+from login.models import Profile, Comment, Course, Identifier
 
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
@@ -78,13 +76,6 @@ class ProfileEditView(UpdateView):
 
     def get_success_url(self):
         return reverse('pages:profile_page', kwargs={'computing_id':ProfileEditView.get_object(self).computing_id})
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        for h in form.cleaned_data['availability']:
-            av, created = AvailabilityEntry.objects.get_or_create(profile=self.object, hour=h)
-
-        return super(ModelFormMixin, self).form_valid(form)
 
 # Create your views here.
 def search(request):

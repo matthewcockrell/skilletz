@@ -44,7 +44,7 @@ class Profile(models.Model):
     #resume = models.FileField(upload_to='documents/', default='', blank=True)
     courses = models.ManyToManyField(Course)
     bio = models.TextField(null=True)
-    availability = models.ManyToManyField(Hour, through='AvailabilityEntry')
+    availability = models.ManyToManyField(Hour)
     people_who_I_like = models.ManyToManyField(Identifier, related_name = 'people_who_I_like')
     people_who_like_me = models.ManyToManyField(Identifier, related_name = 'people_who_like_me')
 
@@ -62,11 +62,6 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-
-class AvailabilityEntry(models.Model):
-    hour = models.ForeignKey(Hour, on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    notes = models.CharField(max_length=50, help_text='Additional notes for this hour')
 
 class Comment(models.Model):
     computing_id = models.CharField(max_length=7, default = '')
