@@ -7,7 +7,7 @@ from .filters import ProfileFilter
 from .forms import ProfileEditForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from login.models import Profile, Comment, Course, Identifier
+from login.models import Profile, Comment, Course, Identifier, AvailabilityEntry
 
 from login.models import Profile, AvailabilityEntry
 
