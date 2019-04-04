@@ -1,4 +1,5 @@
 {% extends 'pages/authenticated.html' %} {% block content %} {% load widget_tweaks %}
+{%load static%}
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -41,6 +42,7 @@
 						<th> Name</th>
 						<th> Major</th>
 						<th> Computing ID</th>
+						<th> Liked? </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,6 +57,14 @@
 						<td>
 							{{profile.computing_id}}
 						</td>
+						<td>
+							{%for person in request.user.profile.people_who_I_like.all%}
+								{%if person.computing_id == profile.computing_id%}
+								  <img src="{% static 'images/smiley.png' %}"> <!--Image Source: https://unityofclearwater.org/wp-content/uploads/2014/11/smiley_face.png-->
+
+								{%endif%}
+							{%endfor%}
+							</td>
 					</tr>
 					{% empty %}
 					<tr>
