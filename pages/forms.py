@@ -4,4 +4,4 @@ from login.models import Profile
 class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'graduation_year', 'major', 'computing_id', 'courses', 'availability', 'bio']
+        fields = ['first_name', 'last_name', 'graduation_year', 'major', 'computing_id', 'courses', 'resume', 'availability', 'bio']

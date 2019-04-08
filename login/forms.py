@@ -10,4 +10,4 @@ class NewProfileForm(ModelForm):
 class EditProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = [ 'first_name', 'last_name', 'graduation_year', 'major', 'computing_id',]
+        fields = [ 'first_name', 'last_name', 'graduation_year', 'major', 'computing_id', 'resume']
