@@ -224,8 +224,8 @@ class TestViews(TestCase):
         req2.user2.profile.last_name = 'Jones'
         req2.user2.profile.major = "English"
         req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123') #Bob "likes" Alice
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987') #Bob "likes" Alice
+        liker = Identifier.objects.create(computing_id = 'xyz987')  #Bob likes Alice
+        liked = Identifier.objects.create(computing_id = 'abc123') #Bob "likes" Alice
         req2.user2.profile.people_who_I_like.add(liked)
         req1.user1.profile.people_who_like_me.add(liker)
         req1.user1.profile.save()
@@ -250,8 +250,8 @@ class TestViews(TestCase):
         req2.user2.profile.last_name = 'Jones'
         req2.user2.profile.major = "English"
         req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123') #Bob "likes" Alice
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987') #Bob "likes" Alice
+        liker = Identifier.objects.create(computing_id = 'xyz987') #Bob "likes" Alice
+        liked = Identifier.objects.create(computing_id = 'abc123') #Bob "likes" Alice
         req2.user2.profile.people_who_I_like.add(liked)
         req1.user1.profile.people_who_like_me.add(liker)
         req1.user1.profile.save()
@@ -277,8 +277,8 @@ class TestViews(TestCase):
         req2.user2.profile.last_name = 'Jones'
         req2.user2.profile.major = "English"
         req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123') #Bob "likes" Alice
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987') #Bob "likes" Alice
+        liker = Identifier.objects.create(computing_id = 'xyz987') #Bob "likes" Alice
+        liked = Identifier.objects.create(computing_id = 'abc123') #Bob "likes" Alice
         req2.user2.profile.people_who_I_like.add(liked)
         req1.user1.profile.people_who_like_me.add(liker)
         req1.user1.profile.save()
@@ -292,127 +292,3 @@ class TestViews(TestCase):
         response = client.get("/profile/abc123") #Go to Alice's profile while logged in as Bob
         self.assertNotContains(response, "People Who I Like", status_code=200, msg_prefix='', html=False) #List should NOT be visible
         self.assertNotContains(response, "People Who Like Me", status_code=200, msg_prefix='', html=False) #List should NOT be visible
-
-    #You unlike another user, so it should no longer appear in your "people_I_like" list on your profile
-    def test_you_unlike_another_person(self):
-        client = Client()
-        req1 = client.get(reverse('pages:feed'))
-        req2 = client.get(reverse('pages:feed'))
-        req1.user1 = User.objects.get_or_create(username = 'alice')[0]
-        req1.user1.profile.first_name = 'Alice'
-        req1.user1.profile.last_name = 'Smith'
-        req1.user1.profile.major = "Computer Science"
-        req1.user1.profile.computing_id = 'abc123'
-        req1.user1.profile.save()
-        req2.user2 = User.objects.get_or_create(username = 'bob')[0]
-        req2.user2.profile.first_name = 'Bob'
-        req2.user2.profile.last_name = 'Jones'
-        req2.user2.profile.major = "English"
-        req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123') #Bob "likes" Alice
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987') #Bob "likes" Alice
-        req2.user2.profile.people_who_I_like.add(liked)
-        req1.user1.profile.people_who_like_me.add(liker)
-        req1.user1.profile.save()
-        req2.user2.profile.save()
-        client.force_login(req1.user1)
-        response = client.get("/profile/xyz987") #Go to Bob's profile
-        self.assertContains(response, "abc123", status_code=200, msg_prefix='', html=False) #Does alice show up there?
-        req2.user2.profile.people_who_I_like.remove(liked)
-        req1.user1.profile.people_who_like_me.remove(liker)
-        liker.delete()
-        liked.delete()
-        response = client.get("/profile/xyz987") #Go to Bob's profile again
-        self.assertContains(response, "abc123", status_code=200, msg_prefix='', html=False) #Does alice show up there?
-
-
-    #Another user unlikes you, so it should no longerappear in your "people_who_like_me" list in your profile
-    def test_another_user_unlikes_you(self):
-        client = Client()
-        req1 = client.get(reverse('pages:feed'))
-        req2 = client.get(reverse('pages:feed'))
-        req1.user1 = User.objects.get_or_create(username = 'alice')[0]
-        req1.user1.profile.first_name = 'Alice'
-        req1.user1.profile.last_name = 'Smith'
-        req1.user1.profile.major = "Computer Science"
-        req1.user1.profile.computing_id = 'abc123'
-        req1.user1.profile.save()
-        req2.user2 = User.objects.get_or_create(username = 'bob')[0]
-        req2.user2.profile.first_name = 'Bob'
-        req2.user2.profile.last_name = 'Jones'
-        req2.user2.profile.major = "English"
-        req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123') #Bob "likes" Alice
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987') #Bob "likes" Alice
-        req2.user2.profile.people_who_I_like.add(liked)
-        req1.user1.profile.people_who_like_me.add(liker)
-        req1.user1.profile.save()
-        req2.user2.profile.save()
-        client.force_login(req1.user1)
-        response = client.get("/profile/abc123") #Go to alice's profile
-        self.assertContains(response, "xyz987", status_code=200, msg_prefix='', html=False) #Does Bob show up there?
-        req2.user2.profile.people_who_I_like.remove(liked)
-        req1.user1.profile.people_who_like_me.remove(liker)
-        liker.delete()
-        liked.delete()
-        response = client.get("/profile/abc123") #Go to alice's profile again
-        self.assertNotContains(response, "xyz987", status_code=200, msg_prefix='', html=False) #Does bob Show up there?
-
-    def test_like_button_change_to_unlike(self):
-        client = Client()
-        req1 = client.get(reverse('pages:feed'))
-        req2 = client.get(reverse('pages:feed'))
-        req1.user1 = User.objects.get_or_create(username = 'alice')[0]
-        req1.user1.profile.first_name = 'Alice'
-        req1.user1.profile.last_name = 'Smith'
-        req1.user1.profile.major = "Computer Science"
-        req1.user1.profile.computing_id = 'abc123'
-        req1.user1.profile.save()
-        req2.user2 = User.objects.get_or_create(username = 'bob')[0]
-        req2.user2.profile.first_name = 'Bob'
-        req2.user2.profile.last_name = 'Jones'
-        req2.user2.profile.major = "English"
-        req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123')
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987')
-        req2.user2.profile.people_who_I_like.add(liked)
-        req1.user1.profile.people_who_like_me.add(liker)
-        req1.user1.profile.save()
-        req2.user2.profile.save()
-        client.force_login(req2.user2)
-        response = client.get("/profile/abc123")
-        self.assertContains(response, "Unlike", status_code=200, msg_prefix='', html=False) #Unlike button should appear
-        self.assertNotContains(response, "Like!", status_code=200, msg_prefix='', html=False) #Like button should not be there
-
-    def test_unlike_button_change_back_to_like(self):
-        client = Client()
-        req1 = client.get(reverse('pages:feed'))
-        req2 = client.get(reverse('pages:feed'))
-        req1.user1 = User.objects.get_or_create(username = 'alice')[0]
-        req1.user1.profile.first_name = 'Alice'
-        req1.user1.profile.last_name = 'Smith'
-        req1.user1.profile.major = "Computer Science"
-        req1.user1.profile.computing_id = 'abc123'
-        req1.user1.profile.save()
-        req2.user2 = User.objects.get_or_create(username = 'bob')[0]
-        req2.user2.profile.first_name = 'Bob'
-        req2.user2.profile.last_name = 'Jones'
-        req2.user2.profile.major = "English"
-        req2.user2.profile.computing_id = 'xyz987'
-        liker = Identifier.objects.create(liker = 'xyz987', liked = 'abc123')
-        liked = Identifier.objects.create(liked = 'abc123', liker = 'xyz987')
-        req2.user2.profile.people_who_I_like.add(liked)
-        req1.user1.profile.people_who_like_me.add(liker)
-        req1.user1.profile.save()
-        req2.user2.profile.save()
-        client.force_login(req2.user2)
-        response = client.get("/profile/abc123")
-        self.assertContains(response, "Unlike", status_code=200, msg_prefix='', html=False) #Unlike button should appear
-        self.assertNotContains(response, "Like!", status_code=200, msg_prefix='', html=False) #Like button should not be there
-        req2.user2.profile.people_who_I_like.remove(liked)
-        req1.user1.profile.people_who_like_me.remove(liker)
-        liker.delete()
-        liked.delete()
-        response = client.get("/profile/abc123")
-        self.assertContains(response, "Like!", status_code=200, msg_prefix='', html=False) #Unlike button should not be there
-        self.assertNotContains(response, "Unlike", status_code=200, msg_prefix='', html=False) #Like button should re-appear

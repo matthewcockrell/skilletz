@@ -6,7 +6,7 @@
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">
-				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger">Unlike</a>{%endif%}{% endif %}
+				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-warning">Like!</a> {% endif %} {% if bool == False %} <a class="btn btn-success">Liked!</a>{%endif%}{% endif %}
 				<br>
 
 			</h1>
@@ -46,7 +46,7 @@
 				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 20%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40"
 				<p><b> People Who I Like: </b></p>
 				{% for person in user.people_who_I_like.all %}
-				<a class="nav-link " href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
+				<a class="nav-link " href="{% url 'pages:profile' %}/{{person.computing_id}} ">{{person.computing_id}}</a>
 				{% endfor %}
 				</div>
 
@@ -55,7 +55,7 @@
 				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 20%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40"
 				<p><b> People Who Like Me: </b></p>
 				{% for person in user.people_who_like_me.all %}
-						<a class="nav-link " href="{% url 'pages:profile' %}/{{person.computing_id}} ">{{person.liker}}</a>
+						<a class="nav-link " href="{% url 'pages:profile' %}/{{person.computing_id}} ">{{person.computing_id}}</a>
 				{% endfor %}
 				</div>
 			</center>
