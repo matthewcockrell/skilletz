@@ -30,8 +30,7 @@ class Course(models.Model):
         return '{} {}: {}'.format(self.mnemonic, self.number, self.title)
 
 class Identifier(models.Model):
-    liker = models.TextField(null=True)
-    liked= models.TextField(null=True)
+    computing_id = models.TextField(null=True)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
