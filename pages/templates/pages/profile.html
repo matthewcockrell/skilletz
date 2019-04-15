@@ -1,11 +1,12 @@
 {% extends 'pages/authenticated.html' %} {% load static %} {% block pagename %}Profile{% endblock %} {% block content %}
 {% load crispy_forms_tags %}
+{%load static%}
 
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">
-				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile
+				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger">Unlike</a>{%endif%}{% endif %}
 				<br>
 
 			</h1>
@@ -17,29 +18,48 @@
 	</div>
 	<div>
 		<section>
-			<br>
 			<center>
-				{% if user.profile_pic %}
-				<img src=" {{ user.profile_pic.url }} " alt="User has not uploaded a profile picture yet." height="200" width="200">
-				{% endif %}
-				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
+				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
 					<p><b>About me: </b></p>
 					{{user.bio}}
 				</div>
 			</center>
 			<center>
-				<div style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;text-align: left;width: 60%; margin:3.5%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40"
+				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
 				<p><b> My Current Courses: </b></p>
 				{% for course in user.courses.all %}
 						{{course.mnemonic}} {{course.number}}: {{course.title}}<br>
 				{% endfor %}
 				</div>
+				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
+				<p><b>My Weekly Availability: </b></p>
+				{% for ai in user.availability.all %}
+						{{ai.display_text}}<br>
+				{% endfor %}
+				</div>
 			</center>
-			<p>
-				<a href="https://skilletz-app.herokuapp.com/availability">Calendar</a>
-			</p>
-			{% if user.resume %}
-			<p><a href=" {{ user.resume.url }} " target="blank"> Resume </a></p>
+
+			{% if request.user.profile.computing_id == user.computing_id %}
+			<center class="row">
+				<div class="col-sm-3"></div>
+				<div class="m-3 col-sm-3 p-4" style="text-align: left;width: 20%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
+				<p><b> People Who I Like: </b></p>
+				{% for person in user.people_who_I_like.all %}
+				<a class="nav-link " href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
+				{% endfor %}
+				</div>
+
+
+
+				<div class="m-3 col-sm-3 p-4" style="text-align: left;width: 20%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
+				<p><b> People Who Like Me: </b></p>
+				{% for person in user.people_who_like_me.all %}
+						<a class="nav-link " href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}</a>
+				{% endfor %}
+				</div>
+				<div class="col-sm-3"></div>
+			</center>
+
 			{% endif %}
 		</section>
 	</div>
@@ -52,38 +72,43 @@
 <br>
 <br>
 <section>
-	<H2 class="display-6"> Reviews and Comments: </H2>
-	<div class="jumbotron jumbotron-fluid">
-		<div="container">
-
+	<div class="container-fluid bg-light">
+		<div class="container">
+			<div class="row">
+				<H2 class="display-6 py-4"> Reviews and Comments: </H2>
+			</div>
 			{% for comment in comments %}
-			<br>
-			<b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b>
-			<br> {{comment.comment_descr}}
-			<br>
-			<br> {%endfor%}
+			<div class="row">
+				<p><b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b></p>
+			</div>
+			<div class="row">
+				<p> {{comment.comment_descr}} </p>
+			</div>
+			{%endfor%}
 
-			<br>
-			<br>
-			<br>
-			<H5 class="display-6"> New Review for this User: </H5>
+			<div class="row">
+				<H5 class="display-6"> New Review for this User: </H5>
+			</div>
 
-			{{form|crispy}}
-			<form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
-				{% csrf_token %} Rating: ☆
-				<input type="radio" name="rating" value="☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆
-				<input type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
-				<input type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
-				<input type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
-				<input type="radio" name="rating" value="☆☆☆☆☆">
-				<br> Title:
-				<input type="text" name="title">
-				<label for="title" Comment.comment_title</label>
-					Description:
-					<input type="text" name="description">
-					<label for="description" Comment.comment_descr</label>
-						<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
+			<div class="row">
+				{{form|crispy}}
+				<form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
+					{% csrf_token %} Rating: ☆
+					<input type="radio" name="rating" value="☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆
+					<input type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
+					<input type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
+					<input type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
+					<input type="radio" name="rating" value="☆☆☆☆☆">
+					<br> Title:
+					<input type="text" name="title">
+					<label for="title" Comment.comment_title</label>
+						Description:
+						<input type="text" name="description">
+						<label for="description" Comment.comment_descr</label>
+							<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
 	</div>
 </section>
 

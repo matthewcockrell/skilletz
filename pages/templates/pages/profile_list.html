@@ -1,4 +1,9 @@
-{% extends 'pages/authenticated.html' %} {% block content %} {% load widget_tweaks %}
+{% extends 'pages/authenticated.html' %}
+
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %} 
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -12,17 +17,23 @@
 				<div class="well-form" style=" margin:3.5%;">
 					<h4 style="margin-top: 0">Filter</h4>
 					<div class="row">
-						<div class="form-group col-sm-4 col-md-4">
+						<div class="form-group col-sm-4">
 							{{ filter.form.first_name.label_tag}} {% render_field filter.form.first_name class="form-control" %}
 						</div>
-						<div class="form-group col-sm-4 col-md-4">
+						<div class="form-group col-sm-4">
 							{{ filter.form.last_name.label_tag}} {% render_field filter.form.last_name class="form-control" %}
 						</div>
-						<div class="form-group col-sm-4 col-md-4">
+						<div class="form-group col-sm-4">
 							{{ filter.form.computing_id.label_tag}} {% render_field filter.form.computing_id class="form-control" %}
 						</div>
-						<div class="form-group col-sm-4 col-md-4">
+						<div class="form-group col-sm-4">
 							{{ filter.form.major.label_tag}} {% render_field filter.form.major class="form-control" %}
+						</div>
+						<div class="form-group col-sm-4">
+							{{ filter.form.availability.label_tag}} {% render_field filter.form.availability class="form-control" %}
+						</div>
+						<div class="form-group col-sm-4">
+							{{ filter.form.courses.label_tag}} {% render_field filter.form.courses class="form-control" %}
 						</div>
 					</div>
 					<center>
@@ -41,6 +52,7 @@
 						<th> Name</th>
 						<th> Major</th>
 						<th> Computing ID</th>
+						<th> Liked? </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,6 +67,13 @@
 						<td>
 							{{profile.computing_id}}
 						</td>
+						<td>
+							{%for person in request.user.profile.people_who_I_like.all%}
+								{%if person.liked == profile.computing_id%}
+								  <img src="{% static 'images/smiley.png' %}">
+								{%endif%}
+							{%endfor%}
+							</td>
 					</tr>
 					{% empty %}
 					<tr>

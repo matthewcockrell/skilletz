@@ -1,14 +1,13 @@
 import datetime
-
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
+from django.views.generic.edit import ModelFormMixin
 from .filters import ProfileFilter
 from .forms import ProfileEditForm
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
-from login.models import Profile, Comment
-
-from login.models import Profile
+from login.models import Profile, Comment, Course, Identifier
 
 class HomePageView(TemplateView):
     template_name = 'pages/home.html'
@@ -23,9 +22,17 @@ def profile_page(request, computing_id):
     comp = computing_id
     profile = Profile.objects.filter(computing_id = comp)
     comments = Comment.objects.filter(computing_id = comp)
+    identify = Identifier(liked = computing_id, liker = request.user.profile.computing_id)
+    bool = True
+    people = request.user.profile.people_who_I_like.all()
+    for person in people:
+        if person.liked == computing_id:
+            bool = False
+
     context = {
         "users" : profile,
-        "comments" : comments
+        "comments" : comments,
+        "bool" : bool
         }
 
     try:
@@ -42,9 +49,37 @@ def profile_page(request, computing_id):
     comments = Comment.objects.filter(computing_id = comp)
     context = {
         "users" : profile,
-        "comments" : comments
+        "comments" : comments,
+        "bool" : bool
         }
     return render(request, 'pages/profile.html', context)
+
+def like_button(request, computing_id):
+    comp = computing_id
+    profile = Profile.objects.filter(computing_id = comp)
+    identify_who_I_like = Identifier(liked = computing_id, liker=request.user.profile.computing_id)
+    identify_who_likes_me = Identifier(liked = computing_id, liker=request.user.profile.computing_id)
+    identify_who_I_like.save()
+    identify_who_likes_me.save()
+    list = request.user.profile.people_who_I_like.all()
+    list2 = []
+    for person in list:
+        list2.append(person.liked) #list of everyone that I like
+    if identify_who_I_like.liked in list2:
+        to_del = Identifier.objects.all()
+        request.user.profile.people_who_I_like.remove(identify_who_I_like)
+        profile[0].people_who_like_me.remove(identify_who_likes_me)
+        for d in to_del:
+            if d.liked == computing_id and d.liker == request.user.profile.computing_id:
+                d.delete()
+        identify_who_I_like.delete()
+        identify_who_likes_me.delete()
+        redir = '/profile/' + computing_id
+    else:
+        request.user.profile.people_who_I_like.add(identify_who_I_like)
+        profile[0].people_who_like_me.add(identify_who_likes_me)
+        redir = '/profile/' + computing_id
+    return redirect(redir)
 
 class ProfileEditView(UpdateView):
     model = Profile
