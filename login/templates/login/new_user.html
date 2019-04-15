@@ -1,24 +1,20 @@
-{% extends 'pages/base.html'%}
-
-{% load crispy_forms_tags %}
-
-{% block pagename %}Profile Creation{% endblock %}
-
-{% block pagecontent %}
-<div> 
+{% extends 'pages/base.html'%} {% load crispy_forms_tags %} {% block pagename %}Profile Creation{% endblock %} {% block pagecontent
+%}
+<div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-4">Profile Creation</h1>
 			<hr class="my-4">
-			<p class="lead">It looks like this is your first time, minding giving us some more information?</p>
+			<p class="lead">It looks like this is your first time, mind giving us some more information?</p>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" style="padding-bottom: 50px; width: 70%;">
 		<div class="row">
 			<form method="post">
-				{% csrf_token %}
-			    {{ form|crispy }}
-			    <button type="submit" class="btn btn-primary">Sign in</button>
+				{% csrf_token %} {{ form|crispy }}
+				<center>
+					<button type="submit" class="btn btn-primary" style="margin-top: 10px">Sign in</button>
+				</center>
 			</form>
 		</div>
 	</div>
