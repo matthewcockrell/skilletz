@@ -1,9 +1,4 @@
-{% extends 'pages/authenticated.html' %}
-
-{% load widget_tweaks %}
-{% load static %}
-
-{% block content %} 
+{% extends 'pages/authenticated.html' %} {% load widget_tweaks %} {% load static %} {% block content %}
 <div>
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
@@ -68,12 +63,9 @@
 							{{profile.computing_id}}
 						</td>
 						<td>
-							{%for person in request.user.profile.people_who_I_like.all%}
-								{%if person.liked == profile.computing_id%}
-								  <img src="{% static 'images/smiley.png' %}">
-								{%endif%}
-							{%endfor%}
-							</td>
+							{%for person in request.user.profile.people_who_I_like.all%} {%if person.liked == profile.computing_id%}
+							<img src="{% static 'images/smiley.png' %}"> {%endif%} {%endfor%}
+						</td>
 					</tr>
 					{% empty %}
 					<tr>
