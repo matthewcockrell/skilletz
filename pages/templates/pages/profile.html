@@ -6,7 +6,7 @@
 	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
 		<div class="container" >
 			<h1 class="display-4">
-				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger">Unlike</a>{%endif%}{% endif %}
+				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success" style="margin-left: 3%;background-color:#60b8bc; ">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger" style="margin-left: 3%">Unlike</a>{%endif%}{% endif %}
 				<br>
 
 			</h1>
@@ -18,23 +18,25 @@
 	</div>
 	<div>
 		<section>
-			<center>
+			<center style="padding-top: 2%">
 				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
 					<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>About me </b></p>
 					{{user.bio}}
 				</div>
 			</center>
-			<center>
+			<center style="padding-top:2%">
 				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> My Current Courses </b></p>
 				{% for course in user.courses.all %}
-						{{course.mnemonic}} {{course.number}}: {{course.title}}<br>
+						- {{course.mnemonic}} {{course.number}}: {{course.title}}<br>
 				{% endfor %}
 				</div>
+			</center>
+			<center style="padding-top:2%">
 				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>My Weekly Availability </b></p>
 				{% for ai in user.availability.all %}
-						{{ai.display_text}}<br>
+						- {{ai.display_text}}<br>
 				{% endfor %}
 				</div>
 			</center>
@@ -77,7 +79,7 @@
 	<div class="container-fluid bg-light">
 		<div class="container">
 			<div class="row">
-				<H2 class="display-6 py-4"> Reviews and Comments: </H2>
+				<H2 class="display-6 py-4" style="height: 1%; background-color:#f4f7f6; color: #e24e42;"> Reviews and Comments: </H2>
 			</div>
 			{% for comment in comments %}
 			<div class="row">
