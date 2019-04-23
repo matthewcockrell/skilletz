@@ -5,19 +5,20 @@
 	<head>
 		<title>{% block pagename %}{% endblock %}</title>
 
-		<!-- Bootstrap inclusion-->
+		<!--Bootstrap inclusion-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+		<!--Fonts-->
+		<link href="https://fonts.googleapis.com/css?family=Assistant|Cutive+Mono|Major+Mono+Display|Tajawal|Ubuntu+Mono" rel="stylesheet">
 
 		<link rel="stylesheet" type="text/css" href="{% static 'pages/style.css' %}">
 	</head>
-	<body>
+	<body style="font-family: 'Assistant', sans-serif;">
 		{% block pagecontent %}{% endblock%}
 		<script>
 			$(document).ready(function() {
