@@ -1,22 +1,25 @@
-{% extends 'pages/base.html'%} {% load crispy_forms_tags %} {% block pagename %}Profile Creation{% endblock %} {% block pagecontent
-%}
+{% extends 'pages/base.html'%} 
+
+{% load crispy_forms_tags %} 
+
+{% block pagename %}Profile Creation{% endblock %} 
+{% block pagecontent %}
 <div>
 	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
 		<div class="container">
-			<h1 class="display-4" style="color: #e24e42">Profile Creation</h1>
+			<h1 class="display-4" style="color: #e24e42; font-family: 'Major Mono Display', monospace;">Profile Creation</h1>
 			<hr class="my-4">
 			<p class="lead">It looks like this is your first time, mind giving us some more information?</p>
 		</div>
 	</div>
 	<div class="container" style="padding-bottom: 50px; width: 70%;">
-		<div class="row">
 			<form method="post">
 				{% csrf_token %} {{ form|crispy }}
 				<center>
-					<button type="submit" class="btn btn-primary" style="margin-top: 10px">Sign in</button>
+					<button type="submit" class="btn btn-primary" style="background-color: #e24e42; border-color:#c12417;">Sign in</button>
 				</center>
 			</form>
-		</div>
+		
 	</div>
 </div>
 {% endblock %}
