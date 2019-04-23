@@ -5,14 +5,14 @@
 <div>
 	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
 		<div class="container" >
-			<h1 class="display-4">
-				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success" style="margin-left: 3%;background-color:#60b8bc; ">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger" style="margin-left: 3%">Unlike</a>{%endif%}{% endif %}
+			<h1 class="display-4" style="font-family: 'Major Mono Display', monospace;">
+				{% for user in users %} Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger" style="margin-left: 3%; font-family: 'Assistant', sans-serif;">Unlike</a>{%endif%}{% endif %}
 				<br>
 
 			</h1>
 			<hr class="my-4">
 			<p>
-				{{user.computing_id}}@virginia.edu | {{user.major}}
+				{{user.first_name}} {{user.last_name}} | {{user.computing_id}}@virginia.edu | {{user.major}}
 			</p>
 		</div>
 	</div>
