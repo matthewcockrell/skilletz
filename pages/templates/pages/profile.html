@@ -28,7 +28,7 @@
 				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> My Current Courses </b></p>
 				{% for course in user.courses.all %}
-						- {{course.mnemonic}} {{course.number}}: {{course.title}}<br>
+						<li> {{course.mnemonic}} {{course.number}}: {{course.title}}</li>
 				{% endfor %}
 				</div>
 			</center>
@@ -36,7 +36,7 @@
 				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>My Weekly Availability </b></p>
 				{% for ai in user.availability.all %}
-						- {{ai.display_text}}<br>
+						<li> {{ai.display_text}}</li>
 				{% endfor %}
 				</div>
 			</center>
