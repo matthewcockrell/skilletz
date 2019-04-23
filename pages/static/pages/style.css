@@ -4,3 +4,17 @@
 a.link:link{
     color: white;
 }
+
+div.bg-primary{
+    background-color: #55ba8b;
+}
+
+.button2 {
+    background-color: #6fbca0; 
+    border-color:#4d8e77;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color:white;
+}

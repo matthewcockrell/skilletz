@@ -1,16 +1,22 @@
-{% extends 'pages/authenticated.html' %} {% load widget_tweaks %} {% load static %} {% block content %}
+{% extends 'pages/authenticated.html' %} 
+
+{% load widget_tweaks %} 
+{% load static %} 
+
+{% block content %}
+
 <div>
-	<div class="jumbotron jumbotron-fluid">
+	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
 		<div class="container">
-			<h1 class="display-4">Feed</h1>
+			<h1 class="display-4" style="color: #e24e42">Feed</h1>
 			<hr class="my-4">
 		</div>
 	</div>
 	<div style="padding-left: 5%; padding-right: 5%">
 		<form method="get">
-			<div class="well" style="background: #f4f6f7; border-radius:25px; border: 1px solid #343a40">
+			<div class="well" style="background: #fcfcfc; border: 1.2px solid #008F95">
+				<h3 style="padding: 2%; text-align: center; background-color: #60b8bc; color: white">Filter</h3>
 				<div class="well-form" style=" margin:3.5%;">
-					<h4 style="margin-top: 0">Filter</h4>
 					<div class="row">
 						<div class="form-group col-sm-4">
 							{{ filter.form.first_name.label_tag}} {% render_field filter.form.first_name class="form-control" %}
@@ -32,7 +38,7 @@
 						</div>
 					</div>
 					<center>
-						<button type="submit" class="btn btn-primary">
+						<button type="submit" class="btn btn-primary" style="background-color: #e24e42; border-color:#c12417;">
 							<span class="glyphicon glyphicon-search"></span> Search </button>
 					</center>
 				</div>
@@ -40,9 +46,9 @@
 		</form>
 		<br>
 		</br>
-		<div style="border: 1px solid #343a40; margin-bottom: 50px">
+		<div style="border: 1.2px solid #008F95; margin-bottom: 50px">
 			<table class=" table table-hover ">
-				<thead class="thead-light">
+				<thead style="background-color: #60b8bc; color: white">
 					<tr>
 						<th> Name</th>
 						<th> Major</th>
@@ -54,7 +60,7 @@
 					{% for profile in filter.qs %}
 					<tr>
 						<td>
-							<a class="nav-link" href="{% url 'pages:profile' %}/{{profile.user}} ">{{profile.first_name}} {{profile.last_name}}</a>
+							<a class="nav-link" style="color:#008F95" href="{% url 'pages:profile' %}/{{profile.user}} ">{{profile.first_name}} {{profile.last_name}}</a>
 						</td>
 						<td>
 							{{profile.major}}
@@ -63,8 +69,11 @@
 							{{profile.computing_id}}
 						</td>
 						<td>
-							{%for person in request.user.profile.people_who_I_like.all%} {%if person.liked == profile.computing_id%}
-							<img src="{% static 'images/smiley.png' %}"> {%endif%} {%endfor%}
+							{%for person in request.user.profile.people_who_I_like.all%} 
+								{%if person.liked == profile.computing_id%}
+									<img src="{% static 'images/smiley.png' %}"> 
+								{%endif%} 
+							{%endfor%}
 						</td>
 					</tr>
 					{% empty %}
