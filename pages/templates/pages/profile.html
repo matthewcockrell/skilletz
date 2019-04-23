@@ -79,8 +79,9 @@
 	<div class="container-fluid bg-light">
 		<div class="container">
 			<div class="row">
-				<H2 class="display-6 py-4" style="height: 1%; background-color:#f4f7f6; color: #e24e42;"> Reviews and Comments: </H2>
+				<h3 class="display-6" style="padding-top: 3.5%; color: #e24e42;"> Reviews and Comments</h3>
 			</div>
+			<hr class="my-3">
 			{% for comment in comments %}
 			<div class="row">
 				<p><b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b></p>
