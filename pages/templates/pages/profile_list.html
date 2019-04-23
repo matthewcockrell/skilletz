@@ -60,7 +60,7 @@
 					{% for profile in filter.qs %}
 					<tr>
 						<td>
-							<a class="nav-link" style="color:#008F95"href="{% url 'pages:profile' %}/{{profile.user}} ">{{profile.first_name}} {{profile.last_name}}</a>
+							<a class="nav-link" style="color:#008F95" href="{% url 'pages:profile' %}/{{profile.user}} ">{{profile.first_name}} {{profile.last_name}}</a>
 						</td>
 						<td>
 							{{profile.major}}

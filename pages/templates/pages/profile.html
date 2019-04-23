@@ -3,8 +3,8 @@
 {%load static%}
 
 <div>
-	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
+	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
+		<div class="container" >
 			<h1 class="display-4">
 				{% for user in users %} {{user.first_name}} {{user.last_name}}'s Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger">Unlike</a>{%endif%}{% endif %}
 				<br>
@@ -19,20 +19,20 @@
 	<div>
 		<section>
 			<center>
-				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-					<p><b>About me: </b></p>
+				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+					<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>About me </b></p>
 					{{user.bio}}
 				</div>
 			</center>
 			<center>
-				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-				<p><b> My Current Courses: </b></p>
+				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> My Current Courses </b></p>
 				{% for course in user.courses.all %}
 						{{course.mnemonic}} {{course.number}}: {{course.title}}<br>
 				{% endfor %}
 				</div>
-				<div class="my-3 p-4" style="text-align: left;width: 60%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-				<p><b>My Weekly Availability: </b></p>
+				<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>My Weekly Availability </b></p>
 				{% for ai in user.availability.all %}
 						{{ai.display_text}}<br>
 				{% endfor %}
@@ -43,19 +43,19 @@
 			<center>
 			<center class="row">
 				<div class="col-sm-3"></div>
-				<div class="m-3 col-sm-3 p-4" style="text-align: left;width: 20%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-				<p><b> People Who I Like: </b></p>
+				<div class="m-3 col-sm-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who I Like </b></p>
 				{% for person in user.people_who_I_like.all %}
-				<a class="nav-link " href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
+				<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
 				{% endfor %}
 				</div>
 
 
 
-				<div class="m-3 col-sm-3 p-4" style="text-align: left;width: 20%; background: #f4f6f7; border-radius:15px; border: 1px solid #343a40">
-				<p><b> People Who Like Me: </b></p>
+				<div class="m-3 col-sm-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who Like Me </b></p>
 				{% for person in user.people_who_like_me.all %}
-						<a class="nav-link " href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}</a>
+						<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}</a>
 				{% endfor %}
 				</div>
 				<div class="col-sm-3"></div>
