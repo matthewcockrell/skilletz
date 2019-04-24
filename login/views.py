@@ -38,6 +38,7 @@ def new_user(request):
                 return redirect(reverse(settings.POST_LOGIN_HOME_URL))
 
     elif not request.user or ('@virginia.edu' not in request.user.email and request.user.email != SHERRIFF_EMAIL):
+        request.user.delete()
         logout(request)
         return redirect(reverse('login:error'))
     elif request.user.profile and request.user.profile.has_been_initialized():
