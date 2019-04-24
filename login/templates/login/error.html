@@ -1,0 +1,27 @@
+{% extends 'pages/base.html'%} 
+
+
+{% block pagename %}Error{% endblock %} 
+{% block pagecontent %}
+<div>
+	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
+		<div class="container">
+			<h1 class="display-4" style="color: #e24e42; font-family: 'Major Mono Display', monospace;">Uh Oh...</h1>
+			<hr class="my-4">
+			<p class="lead">Something went wrong</p>
+		</div>
+	</div>
+	<div class="container" style="padding-bottom: 50px; width: 70%;">
+		<div class="row">
+			<div class="col-xs-12">
+				<p>The most common cause of this problem is trying to login from a non-UVA e-mail address. Except for a few special users, a UVA email address is required to access the site. If you think this is an error please let us know!</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<a href={% url 'pages:home' %}>Back to the Homepage</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
