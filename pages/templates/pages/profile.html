@@ -81,41 +81,52 @@
 			<div class="row">
 				<h3 class="display-6" style="padding-top: 3.5%; color: #e24e42;"> Reviews and Comments</h3>
 			</div>
-			<hr class="my-3">
+
+
 			{% for comment in comments %}
-			<div class="row">
-				<p><b>{{comment.comment_title}} - - - - - - - - - - - - - - - {{comment.rating}}</b></p>
-			</div>
-			<div class="row">
+
+				{%if comment.comment_title != "" and comment.comment_rating != 0 and comment.comment_descr != "" %}
+				<hr class="my-4">
+
+				<p><b>{{comment.comment_title}} - {{comment.rating}}</b></p>
+
+
 				<p> {{comment.comment_descr}} </p>
-			</div>
+
+				{%endif%}
+
 			{%endfor%}
 
+<center>
+<hr class="my-4">
+{%if request.user.profile.computing_id != user.computing_id%}
+	<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
+			<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>New review for this user:</b></p>
 			<div class="row">
-				<H5 class="display-6"> New Review for this User: </H5>
 			</div>
 
 			<div class="row">
 				{{form|crispy}}
 				<form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
-					{% csrf_token %} Rating: ☆
+					{% csrf_token %} *Rating: ☆
 					<input type="radio" name="rating" value="☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆
 					<input type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
 					<input type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
 					<input type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
-					<input type="radio" name="rating" value="☆☆☆☆☆">
-					<br> Title:
-					<input type="text" name="title">
-					<label for="title" Comment.comment_title</label>
-						Description:
-						<input type="text" name="description">
+					<input type="radio" name="rating" value="☆☆☆☆☆"><br><br>
+					<input type="text" placeholder= "*Comment Title" name="title"> <br>
+					<label for="title" Comment.comment_title</label><br>
+						<textarea placeholder="*Comment Description" rows = "4" cols = "50" name="description"></textarea> <br>
 						<label for="description" Comment.comment_descr</label>
-							<button type="submit" class="btn btn-primary" style="background-color: #e24e42; border-color:#c12417;">Submit</button>
+							<button type="submit" class="btn btn-primary" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Submit</button>
 				</form>
+			</div>
 			</div>
 		</div>
 	</div>
 </section>
+</center>
+{%endif%}
 
 
 {%endfor%} {% endblock %}
