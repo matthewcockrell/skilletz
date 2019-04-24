@@ -172,7 +172,6 @@ class TestViews(TestCase):
         self.assertContains(response, "Last name", count=None, status_code=200, msg_prefix='', html=False)
         self.assertContains(response, "Graduation year", count=None, status_code=200, msg_prefix='', html=False)
         self.assertContains(response, "Major", count=None, status_code=200, msg_prefix='', html=False)
-        self.assertContains(response, "Computing id", count=None, status_code=200, msg_prefix='', html=False)
         self.assertContains(response, "Courses", count=None, status_code=200, msg_prefix='', html=False)
         self.assertContains(response, "Bio", count=None, status_code=200, msg_prefix='', html=False)
 
