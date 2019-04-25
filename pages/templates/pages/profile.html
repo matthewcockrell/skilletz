@@ -99,7 +99,7 @@
 <hr class="my-4">
 {%if request.user.profile.computing_id != user.computing_id%}
 	<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
-			<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>New review for {{user.first_name}}:</b></p>
+			<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>New review for {{user.first_name}}</b></p>
 			<div class="row">
 			</div style="border-radius:25px">
 				{{form|crispy}}
