@@ -43,9 +43,9 @@
 
 			{% if request.user.profile.computing_id == user.computing_id %}
 			<center style="padding-top: 2%">
-			<center class="row d-flex justify-content-around" style="width: 60%">
-				<div class="col-sm-4 p-4" style="text-align: left; background: #fcfcfc; border: 1.2px solid #008F95">
-				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who I Like </b></p>
+			<center class="row d-flex justify-content-around" style="padding-top: 2%; width: 60%">
+				<div class="col-sm-4 p-4" style="text-align: left; background: #fcfcfc; border: 1.2px solid #008F95; padding-top: 2%;">
+				<p style="border: 1.2px solid #008F95; padding-top: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who I Like </b></p>
 				{% for person in user.people_who_I_like.all %}
 				<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
 				{% endfor %}
@@ -53,7 +53,7 @@
 
 
 
-				<div class="col-sm-4 p-4" style="text-align: left; background: #fcfcfc; border: 1.2px solid #008F95">
+				<div class="col-sm-4 p-4" style="padding-top: 2%;text-align: left; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who Like Me </b></p>
 				{% for person in user.people_who_like_me.all %}
 						<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}</a>
@@ -99,26 +99,54 @@
 <hr class="my-4">
 {%if request.user.profile.computing_id != user.computing_id%}
 	<div class="my-3 p-4" style="text-align: left; width: 60%; background: #fcfcfc; border: 1.2px solid #008F95">
-			<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>New review for this user:</b></p>
+			<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b>New review for {{user.first_name}}</b></p>
 			<div class="row">
-			</div>
-
-			<div class="row">
+			</div style="border-radius:25px">
 				{{form|crispy}}
 				<form action="{% url 'pages:profile_page' user.computing_id %}" method="post">
-					{% csrf_token %} *Rating: ☆
-					<input type="radio" name="rating" value="☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆
-					<input type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
-					<input type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
-					<input type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
-					<input type="radio" name="rating" value="☆☆☆☆☆"><br><br>
-					<input type="text" placeholder= "*Comment Title" name="title"> <br>
+					{% csrf_token %}
+					Rating:
+					</br>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" id="radio1" type="radio" name="rating" value="☆">
+						<label class="form-check-label" for="radio1">☆</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" id="radio2" type="radio" name="rating" value="☆☆">
+						<label class="form-check-label" for="radio2">☆☆</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" id="radio3" type="radio" name="rating" value="☆☆☆">
+						<label class="form-check-label" for="radio3">☆☆☆</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" id="radio4" type="radio" name="rating" value="☆☆☆☆">
+						<label class="form-check-label" for="radio4">☆☆☆☆</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" id="radio4" type="radio" name="rating" value="☆☆☆☆☆">
+						<label class="form-check-label" for="radio4">☆☆☆☆☆</label>
+					</div>
+					<!--<input class="form-check-input" type="radio" name="rating" value="☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆
+					<input class="form-check-input" type="radio" name="rating" value="☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆
+					<input class="form-check-input" type="radio" name="rating" value="☆☆☆☆"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☆☆☆☆☆
+					<input class="form-check-input" type="radio" name="rating" value="☆☆☆☆☆"><br><br>-->
+					<div class="form-group">
+						<label for="title">Review Title:</label>
+						<input type="text" name="title" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="description">Review Description:</label>
+						<textarea type="text" name="description" class="form-control" rows="3"></textarea>
+					</div>
+					<!--<input type="text" placeholder= "*Comment Title" name="title"> <br>
 					<label for="title" Comment.comment_title</label><br>
 						<textarea placeholder="*Comment Description" rows = "4" cols = "50" name="description"></textarea> <br>
-						<label for="description" Comment.comment_descr</label>
-							<button type="submit" class="btn btn-primary" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Submit</button>
+						<label for="description" Comment.comment_descr</label>-->
+					<center>
+						<button type="submit" class="btn btn-primary" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Submit</button>
+					</center>
 				</form>
-			</div>
 			</div>
 		</div>
 	</div>
