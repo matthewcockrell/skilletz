@@ -1,92 +1,39 @@
 # project-102-skilletz
 project-102-skilletz created by GitHub Classroom
 
-One Paragraph of project description goes here
+Skilletz is a peer-to-peer social connection site meant to bring the larger UVA community together. Finding peers is too hard, and it really shouldn't be. We should be able to find peers based on major, classes, or experience, without any trouble. We hope to make the spread of information easier and to help all students learn in the environment that suits them best.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Go to the landing page at https://skilletz-app.herokuapp.com/.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+A valid UVA email account or the privilege of being Professor Sherriff.
 ```
-Give examples
+(i.e. aaa4aa@virginia.edu)
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Travis](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Django](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Heroku](https://rometools.github.io/rome/) - Used to deploy
+* [Travis](https://rometools.github.io/rome/) - Used for tests
 
 ## Authors
 
-* **Kobe Jones** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Marina Kun** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Matthew Cockrell** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Jack Shefer ** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-* **Elizabeth Henning** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jack Shefer** - *Software Architect*
+* **Marina Kun** - *Configurations Manager*  
+* **Matthew Cockrell** - *Testing Manager*  
+* **Elizabeth Henning** - *Requirements Manager*
+* **Kobe Jones** - *Scrum Master*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the UVA License - no one else may use this without the explicit permission of the authors involved- see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the UVA License, the Federal government, the CIA, the NSA, and the United Nations - no one else may use this without the explicit permission of the authors involved- see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
 * WE LOVE SHERRIFF
