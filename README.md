@@ -14,6 +14,10 @@ A valid UVA email account or the privilege of being Professor Sherriff.
 (i.e. aaa4aa@virginia.edu)
 ```
 
+### General Usage
+
+Please follow the instructions as they appear throughout the website. Explore as much as you can and we hope you find the perfect study buddy. 
+
 ## Built With
 
 * [Django](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
@@ -27,8 +31,6 @@ A valid UVA email account or the privilege of being Professor Sherriff.
 * **Matthew Cockrell** - *Testing Manager*  
 * **Elizabeth Henning** - *Requirements Manager*
 * **Kobe Jones** - *Scrum Master*
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
