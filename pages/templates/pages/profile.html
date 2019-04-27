@@ -6,13 +6,13 @@
 	<div class="jumbotron jumbotron-fluid" style="height: 1%; background-color:#f4f7f6; color: #e24e42;">
 		<div class="container" >
 			<h1 class="display-4" style="font-family: 'Major Mono Display', monospace;">
-				{% for user in users %} Profile   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger" style="margin-left: 3%; font-family: 'Assistant', sans-serif;">Unlike</a>{%endif%}{% endif %}
+				{% for user in users %} {{user.first_name}} {{user.last_name}}   {% if user.computing_id != request.user.profile.computing_id %} {% if bool == True %}<a href="/like/{{user.computing_id}} " class="btn btn-success" style="margin-left: 3%;background-color:#60b8bc; font-family: 'Assistant', sans-serif;">Like!</a> {% endif %} {% if bool == False %} <a href="/like/{{user.computing_id}}" class="btn btn-danger" style="margin-left: 3%; font-family: 'Assistant', sans-serif;">Unlike</a>{%endif%}{% endif %}
 				<br>
 
 			</h1>
 			<hr class="my-4">
 			<p>
-				{{user.first_name}} {{user.last_name}} | &nbsp;<a href="mailto:{{user.user.email}}" style="color: #e24243">{{user.user.email}}</a> &nbsp;| {{user.major}}
+				&nbsp;<a href="mailto:{{user.user.email}}" style="color: #e24243">{{user.user.email}}</a> &nbsp;| {{user.major}}
 			</p>
 			{% if request.user.profile.computing_id == user.computing_id %}
 			<p class="lead">
@@ -57,7 +57,14 @@
 				<div class="col-sm-4 p-4" style="text-align: left; background: #fcfcfc; border: 1.2px solid #008F95; padding-top: 2%;">
 				<p style="border: 1.2px solid #008F95; padding-top: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who I Like </b></p>
 				{% for person in user.people_who_I_like.all %}
+					{%for profile in allProfiles%}
+					{%if profile.computing_id == person.liked%}
+						<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liked}} ">{{profile.first_name}} {{profile.last_name}}</a>
+					{%endif%}
+					{%endfor%}
+					<!--
 				<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liked}} ">{{person.liked}}</a>
+				-->
 				{% endfor %}
 				</div>
 
@@ -66,7 +73,14 @@
 				<div class="col-sm-4 p-4" style="padding-top: 2%;text-align: left; background: #fcfcfc; border: 1.2px solid #008F95">
 				<p style="border: 1.2px solid #008F95; padding: 2%; text-align: center; background-color: #60b8bc; color: white"><b> People Who Like Me </b></p>
 				{% for person in user.people_who_like_me.all %}
-						<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}</a>
+					{%for profile in allProfiles%}
+					{%if profile.computing_id == person.liker%}
+						<a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liker}} ">{{profile.first_name}} {{profile.last_name}}</a>
+					{%endif%}
+					{%endfor%}
+					<!--
+						<--a class="nav-link " style="color:#008F95" href="{% url 'pages:profile' %}/{{person.liker}} ">{{person.liker}}
+						-->
 				{% endfor %}
 				</div>
 			</center>

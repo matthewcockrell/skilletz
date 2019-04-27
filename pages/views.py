@@ -28,11 +28,12 @@ def profile_page(request, computing_id):
     for person in people:
         if person.liked == computing_id:
             bool = False
-
+    allProfiles = Profile.objects.all()
     context = {
         "users" : profile,
         "comments" : comments,
-        "bool" : bool
+        "bool" : bool,
+        "allProfiles" : allProfiles,
         }
 
     try:
@@ -44,13 +45,20 @@ def profile_page(request, computing_id):
 
     else:
         comment = Comment(computing_id = comp, comment_title = title, comment_descr = description, rating = stars)
-        comment.save()
+        allComments = Comment.objects.all()
+        duplicate = False
+        for com in allComments:
+            if com.comment_title == comment.comment_title and com.comment_descr == comment.comment_descr and com.rating == comment.rating:
+                duplicate = True
+        if duplicate == False:
+            comment.save()
 
     comments = Comment.objects.filter(computing_id = comp)
     context = {
         "users" : profile,
         "comments" : comments,
-        "bool" : bool
+        "bool" : bool,
+        "allProfiles" : allProfiles,
         }
     return render(request, 'pages/profile.html', context)
 
